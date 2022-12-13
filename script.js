@@ -37,7 +37,7 @@ var keys = {
 
 
 var menu = {
-  cmds: ["datetime                Time", "about", "projects", "escape", "you", "example","cls"],
+  cmds: ["datetime", "about", "projects", "skills", "contact","cls","resume"],
   cmdDetector: function(cmd) {
     switch(cmd) {
       case "datetime":
