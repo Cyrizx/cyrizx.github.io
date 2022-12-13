@@ -11,6 +11,24 @@ body {
   background: rgba(0,10,14,1);
 }
 
+.container {  
+  display: grid;
+  grid-template-columns: 0.2fr 1.7fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "social Main Main Main";
+}
+
+.social { 
+  grid-area: Social;
+  position: absolute;
+  bottom: 2em;
+}
+
+.Main { grid-area: Main; }
+
+
 #result {
   position: absolute;
   bottom: 1em;
@@ -24,6 +42,16 @@ body {
   font-family: "Courier";
   font-weight: 500;
 	}
+
+ul a svg {
+    width: 20px;
+    height: 20px;
+    color:#50c99d;
+}
+
+ul a svg:hover {
+  color:#ffffff;
+}
 
 @keyframes "blink" {
 	from, to {

@@ -37,7 +37,7 @@ var keys = {
 
 
 var menu = {
-  cmds: ["datetime                Time", "about", "projects", "escape", "you", "adventure"],
+  cmds: ["datetime                Time", "about", "projects", "escape", "you", "example","cls"],
   cmdDetector: function(cmd) {
     switch(cmd) {
       case "datetime":
@@ -52,10 +52,13 @@ var menu = {
       case "escape":
         menu.escape()
         break;
+      case "cls":
+        menu.cls()
+        break;
       case "you":
         menu.you();
         break;
-      case "adventure":
+      case "example":
         menu.adventure();
         break;
       case "help":
@@ -105,6 +108,10 @@ var menu = {
   escape: function() {
     var escapeTxt = "Get me outta here!";
     menu.printStr(escapeTxt);
+  },
+  cls: function() {
+    var cls = "";
+    menu.printStr(cls);
   },
   adventure: function() {
     var msg = "Coming soon...";
@@ -179,7 +186,7 @@ var prompt = {
     }
   },
   printCmd: function(cmd) {
-    $('#cmds').text('$ ' + cmd);
+    $('#cmds').text('$' + cmd);
   },
   backspace: function() {
     var oldStr = prompt.currentInput();
