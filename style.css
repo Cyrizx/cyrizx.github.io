@@ -1,0 +1,49 @@
+* { margin:0; padding:0; }
+
+body {
+  margin: 1em;
+  color: #50c99d;
+  font-size: 18px;
+  /* text-shadow: 0 0 .8em #8F7; */
+  font-weight: 500;
+  font-family: "Courier";
+  background-color: #000A0E;
+  background: rgba(0,10,14,1);
+}
+
+#result {
+  position: absolute;
+  bottom: 1em;
+  width: 90%;
+}
+
+#cursor {
+	-webkit-animation: 1s blink step-end infinite;
+	animation: 1s blink step-end infinite;
+	color: #51796A;
+  font-family: "Courier";
+  font-weight: 500;
+	}
+
+@keyframes "blink" {
+	from, to {
+		color: transparent;
+	}
+	50% {
+		color: #51796A;
+    font-weight: 500;
+    font-family: "Courier";
+	}
+}
+
+@-webkit-keyframes "blink" {
+	from, to {
+		color: transparent;
+		}
+	50% {
+		color: #51796A;
+    font-weight: 500;
+    font-family: "Courier";
+	}
+}
+
