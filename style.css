@@ -59,7 +59,7 @@ ul a svg:hover {
   color:#ffffff;
 }
 
-@keyframes "blink" {
+@keyframes blink {
 	from, to {
 		color: transparent;
 	}
@@ -70,7 +70,7 @@ ul a svg:hover {
 	}
 }
 
-@-webkit-keyframes "blink" {
+@-webkit-keyframes blink {
 	from, to {
 		color: transparent;
 		}
