@@ -24,15 +24,20 @@ body {
   grid-area: Social;
   position: absolute;
   bottom: 2em;
+
 }
 
-.Main { grid-area: Main; }
+.Main { 
+  grid-area: Main; 
+ 
+}
 
 
 #result {
   position: absolute;
   bottom: 1em;
   width: 90%;
+  border-right: 1px solid green ;
 }
 
 #cursor {
@@ -47,6 +52,7 @@ ul a svg {
     width: 20px;
     height: 20px;
     color:#50c99d;
+    margin-bottom: 10px;
 }
 
 ul a svg:hover {
