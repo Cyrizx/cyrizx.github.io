@@ -32,6 +32,10 @@ body {
  
 }
 
+.maintext {
+  color: #8d8a8a;
+}
+
 
 #result {
   position: absolute;
