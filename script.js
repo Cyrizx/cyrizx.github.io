@@ -165,11 +165,11 @@ var prompt = {
     })
   },
   currentInput: function() {
-    var str = $("#cmds").text().substring(2);
+    var str = $("#cmds").text().substring(9);
     return str;
   },
   newLine: function() {
-    $('#cmds').append().html("<br> $ ");
+    $('#cmds').append().html("<br> $admin: ");
   },
   cmdHistory: function() {
     var previousCmd = prompt.currentInput().trim();
@@ -186,12 +186,12 @@ var prompt = {
     }
   },
   printCmd: function(cmd) {
-    $('#cmds').text('$' + cmd);
+    $('#cmds').text('$a' + cmd);
   },
   backspace: function() {
     var oldStr = prompt.currentInput();
     var newStr = oldStr.substring(0, oldStr.length - 1);
-    $('#cmds').text('$ ' + newStr);
+    $('#cmds').text('$a ' + newStr);
   }
 
 }

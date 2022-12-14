@@ -4,7 +4,7 @@ body {
   margin: 1em;
   color: #50c99d;
   font-size: 18px;
-  /* text-shadow: 0 0 .8em #8F7; */
+  text-shadow: 0 0 .8em #8F7;
   font-weight: 500;
   font-family: "Courier";
   background-color: #000A0E;
@@ -41,7 +41,7 @@ body {
   position: absolute;
   bottom: 1em;
   width: 90%;
-  border-right: 1px solid green ;
+  border-top: 1px solid rgba(2, 110, 2, 0.281);
 }
 
 #cursor {
@@ -57,7 +57,26 @@ ul a svg {
     height: 20px;
     color:#50c99d;
     margin-bottom: 10px;
-}
+    text-shadow: 0 0 .8em #8F7;
+  }
+  
+  .blackbg {
+  fill: #50c99d;
+  text-shadow: 0 0 .8em #8F7;
+  }
+
+  .resume {
+    fill: #50c99d;
+    text-shadow: 0 0 .8em #8F7;
+  }
+
+  .resume:hover {
+    fill: #ffffff;
+  }
+
+  .blackbg:hover {
+    fill: #ffffff;
+    }
 
 ul a svg:hover {
   color:#ffffff;
