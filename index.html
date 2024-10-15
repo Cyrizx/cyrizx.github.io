@@ -9,6 +9,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
     <!-- Firebase Authentication -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+    <!-- Firebase Analytics (Opcional) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
 </head>
 <body>
     <h1>¡Bienvenido a mi página web!</h1>
@@ -27,7 +29,10 @@
       };
 
       // Inicializar Firebase
-      const app = firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics(); // Opcional
+
+      // Inicializar servicios
       const db = firebase.firestore();
       const auth = firebase.auth();
 
