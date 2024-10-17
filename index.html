@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Contador de Visitas</title>
-    <!-- Firebase App (la parte central de Firebase) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-    <!-- Firebase Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
-    <!-- Firebase Analytics (Opcional) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
-</head>
-<body>
-    <h1>¡Bienvenido a mi página web!</h1>
-    <p>Esta es una página alojada en GitHub Pages.</p>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Visitas</title>
+  <script type="module">
+    // Importar Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-    <script>
-      // Tu configuración de Firebase
-      const firebaseConfig = {
-        apiKey: "AIzaSyAQ-Vq5jLXGWTOysLFw3BMvADMXoVBdUuQ",
-        authDomain: "contadordevisitas-63ab6.firebaseapp.com",
-        projectId: "contadordevisitas-63ab6",
-        storageBucket: "contadordevisitas-63ab6.appspot.com",
-        messagingSenderId: "944306822546",
-        appId: "1:944306822546:web:a87f3f6f545f2276dc354b",
-        measurementId: "G-7X9YQKP8XS"
-      };
+    // Tu configuración de Firebase
+    const firebaseConfig = {
 
-      // Inicializar Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics(); // Opcional
+apiKey: "AIzaSyDNnEo_zDVOqCs7T9w6F1qGe2Q-fPdpEeE",
 
-      // Inicializar servicios
-      const db = firebase.firestore();
-      const auth = firebase.auth();
+authDomain: "contadorvisitas-fd588.firebaseapp.com",
 
-      // Autenticación Anónima
-      auth.signInAnonymously()
-        .then(() => {
-          console.log("Usuario autenticado de forma anónima");
+projectId: "contadorvisitas-fd588",
 
-          // Obtener información del visitante
-          const visitInfo = {
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            userAgent: navigator.userAgent,
-            // Opcional: Puedes agregar más información como la ubicación
-          };
+storageBucket: "contadorvisitas-fd588.appspot.com",
 
-          // Escribir en Firestore
-          db.collection("visitas").add(visitInfo)
-            .then(() => {
-              console.log("Visita registrada");
-            })
-            .catch((error) => {
-              console.error("Error al registrar la visita: ", error);
-            });
-        })
-        .catch((error) => {
-          console.error("Error en la autenticación anónima: ", error);
+messagingSenderId: "276374859643",
+
+appId: "1:276374859643:web:1b88b744d08056d16617de",
+
+measurementId: "G-1G7MPMFWH2"
+
+};
+
+
+
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Función para obtener la ubicación del usuario
+    // function obtenerUbicacion() {
+    //   return new Promise((resolve, reject) => {
+    //     if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(resolve, reject);
+    //     } else {
+    //       reject(new Error("Geolocalización no soportada"));
+    //     }
+    //   });
+    // }
+
+    // Función para registrar la visita en Firestore
+    async function registrarVisita() {
+      try {
+        // const ubicacion = await obtenerUbicacion();
+        const userAgent = navigator.userAgent;
+        const timestamp = new Date();
+
+        // Añadir documento a Firestore
+        await addDoc(collection(db, "visitas"), {
+          dispositivo: userAgent,
+          hora: timestamp
         });
-    </script>
+
+        // Redirigir después de registrar la visita
+        window.location.href = "https://wa.me/543834257342";
+      } catch (error) {
+        console.error("Error al registrar la visita:", error);
+        // Redirigir aunque ocurra un error
+        window.location.href = "https://wa.me/543834257342";
+      }
+    }
+
+    // Ejecutar la función de registrar visita cuando se cargue la página
+    registrarVisita();
+  </script>
+</head>
+
+<body>
+  <h1>Redirigiendo...</h1>
 </body>
+
 </html>
