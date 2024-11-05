@@ -12,9 +12,10 @@
             width: 100%;
         }
         nav {
+          
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 30px;
             flex-wrap: nowrap; /* Evita que los elementos se apilen verticalmente */
         }
         a {
@@ -27,11 +28,20 @@
             overflow: hidden;
         }
         img {
+        
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+        .circulo {
 
+          /* border-color: rgb(0, 0, 0); */
+          border-width: 5px ;
+          border-style: solid;
+          border-radius: 50%;
+          border-color: rgb(255, 137, 137);
+        
+        }
         /* Ajustes para pantallas más pequeñas */
         @media (max-width: 600px) {
             a {
@@ -49,13 +59,17 @@
     <h1 style="text-align: center;">Clic para elegir tu respuesta</h1>
     <div>
         <nav>
-            <a href="https://www.youtube.com/watch?v=VnQ28sC_oto">
-                <img src="https://as2.ftcdn.net/v2/jpg/00/98/24/45/1000_F_98244581_otL4Mr22a7X0YkGT4c4S4iyCAlioHA7w.jpg" alt="Sí">
+            <a class="circulo" href="https://www.youtube.com/watch?v=VnQ28sC_oto">
+                <img class="circulo" src="https://as2.ftcdn.net/v2/jpg/00/98/24/45/1000_F_98244581_otL4Mr22a7X0YkGT4c4S4iyCAlioHA7w.jpg" alt="Sí">
             </a>
-            <a href="https://youtu.be/1NDSngAEn54?si=-7BxQxdCzrxmV-eO&t=17">
-                <img src="https://media.istockphoto.com/id/495350227/es/foto/tarjeta-de-expresi%C3%B3n-decir-sin-palabras.jpg?s=1024x1024&w=is&k=20&c=eguBddTDwgpeakAY7QblMe2MP1GyllZ12BPV5Q_DRr8=" alt="No">
+            <a class="circulo" href="https://youtu.be/1NDSngAEn54?si=-7BxQxdCzrxmV-eO&t=17">
+                <img class="circulo" src="https://media.istockphoto.com/id/495350227/es/foto/tarjeta-de-expresi%C3%B3n-decir-sin-palabras.jpg?s=1024x1024&w=is&k=20&c=eguBddTDwgpeakAY7QblMe2MP1GyllZ12BPV5Q_DRr8=" alt="No">
             </a>
         </nav>
     </div>
+
 </body>
+<footer>
+  <p style="text-align: center;">&copy;By Dario &copy;</p>
+</footer>
 </html>
