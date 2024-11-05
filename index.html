@@ -1,80 +1,61 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Visitas</title>
-  <script type="module">
-    // Importar Firebase SDK
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta seria...</title>
+    <style>
+        .meamas {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: nowrap; /* Evita que los elementos se apilen verticalmente */
+        }
+        a {
+            width: 50%; /* Cada enlace ocupa el 50% del ancho del contenedor */
+            height: auto;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    // Tu configuración de Firebase
-    const firebaseConfig = {
-
-apiKey: "AIzaSyDNnEo_zDVOqCs7T9w6F1qGe2Q-fPdpEeE",
-
-authDomain: "contadorvisitas-fd588.firebaseapp.com",
-
-projectId: "contadorvisitas-fd588",
-
-storageBucket: "contadorvisitas-fd588.appspot.com",
-
-messagingSenderId: "276374859643",
-
-appId: "1:276374859643:web:1b88b744d08056d16617de",
-
-measurementId: "G-1G7MPMFWH2"
-
-};
-
-
-
-    // Inicializar Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Función para obtener la ubicación del usuario
-    // function obtenerUbicacion() {
-    //   return new Promise((resolve, reject) => {
-    //     if (navigator.geolocation) {
-    //       navigator.geolocation.getCurrentPosition(resolve, reject);
-    //     } else {
-    //       reject(new Error("Geolocalización no soportada"));
-    //     }
-    //   });
-    // }
-
-    // Función para registrar la visita en Firestore
-    async function registrarVisita() {
-      try {
-        // const ubicacion = await obtenerUbicacion();
-        const userAgent = navigator.userAgent;
-        const timestamp = new Date();
-
-        // Añadir documento a Firestore
-        await addDoc(collection(db, "visitas"), {
-          dispositivo: userAgent,
-          hora: timestamp
-        });
-
-        // Redirigir después de registrar la visita
-        window.location.href = "https://wa.me/543834257342";
-      } catch (error) {
-        console.error("Error al registrar la visita:", error);
-        // Redirigir aunque ocurra un error
-        window.location.href = "https://wa.me/543834257342";
-      }
-    }
-
-    // Ejecutar la función de registrar visita cuando se cargue la página
-    registrarVisita();
-  </script>
+        /* Ajustes para pantallas más pequeñas */
+        @media (max-width: 600px) {
+            a {
+                width: 50vw; /* Ajuste proporcional para pantallas muy pequeñas */
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <h1>Redirigiendo...</h1>
+    <header>
+        <div class="meamas">
+            <img src="https://cdn.memegenerator.es/descargar/2241552" alt="Me amas?">
+        </div>
+    </header>
+    <h1 style="text-align: center;">Clic para elegir tu respuesta</h1>
+    <div>
+        <nav>
+            <a href="https://www.youtube.com/watch?v=VnQ28sC_oto">
+                <img src="https://as2.ftcdn.net/v2/jpg/00/98/24/45/1000_F_98244581_otL4Mr22a7X0YkGT4c4S4iyCAlioHA7w.jpg" alt="Sí">
+            </a>
+            <a href="https://youtu.be/1NDSngAEn54?si=-7BxQxdCzrxmV-eO&t=17">
+                <img src="https://media.istockphoto.com/id/495350227/es/foto/tarjeta-de-expresi%C3%B3n-decir-sin-palabras.jpg?s=1024x1024&w=is&k=20&c=eguBddTDwgpeakAY7QblMe2MP1GyllZ12BPV5Q_DRr8=" alt="No">
+            </a>
+        </nav>
+    </div>
 </body>
-
 </html>
