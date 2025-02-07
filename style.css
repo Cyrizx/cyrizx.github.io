@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Stalemate');
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Square+Peg&display=swap');
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -13,7 +13,8 @@ body {
     rgba(255, 255, 255, 0.9), 
     rgba(255, 255, 255, 0.9)), 
     url(https://s-media-cache-ak0.pinimg.com/originals/30/b3/a9/30b3a9b27032a6b9c1d7a69d2400fb9e.jpg);
-  font-family: 'Stalemate', cursive;
+    font-family: "Delius Swash Caps", serif;
+    font-size: 10px;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -100,7 +101,7 @@ body {
     rgba(255, 255, 255, 0.1)), 
     url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
   background-size: cover;
-  opacity: 0.2;
+  opacity: 0.02;
 }
 
 /* Media queries para dispositivos móviles en horizontal */
