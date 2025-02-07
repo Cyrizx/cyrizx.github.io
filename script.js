@@ -3354,21 +3354,50 @@ $.findPos = findPos;
 
 })(jQuery);
 
-$(window).ready(function() {
-	  $('.pages').turn({
+
+
+$(document).ready(function () {
+  function resizePages() {
+    var container = $('.pages-container'); // Selecciona el contenedor
+    var pages = $('.pages'); // Selecciona las páginas
+
+    if (container.length && pages.length) { // Verifica que los elementos existen
+      var width = container.width(); // Obtiene el ancho del contenedor
+      var height = container.height(); // Obtiene la altura del contenedor
+
+      pages.turn('size', width, height); // Ajusta el tamaño de las páginas
+    }
+  }
+
+  if ($('.pages').length) { // Asegura que el elemento existe antes de inicializar turn.js
+    $('.pages').turn({
       duration: 1500,
-      width: 620,
-      height: 445,
-	  //  acceleration: true,
-    //  display: 'single',
-     // autoCenter: true,
-     turnCorners: "bl,br",
-	    elevation: 300,
-	    when: {
-	      turned: function(e, page) {
-	        console.log('Current view: ', $(this).turn('view'));
-	      }
-	    }
-	  });
-	});
+      width: $('.pages-container').width(), // Usa el ancho del contenedor
+      height: $('.pages-container').height(), // Usa la altura del contenedor
+      turnCorners: "bl,br",
+      elevation: 300,
+      when: {
+        turned: function (e, page) {
+          console.log('Current view: ', $(this).turn('view'));
+        }
+      }
+    });
+
+    // Ajustar tamaño inmediatamente después de la inicialización
+    resizePages();
+  } else {
+    console.error("Error: No se encontró el elemento .pages");
+  }
+
+  // Ajustar tamaño también cuando toda la página haya cargado completamente
+  $(window).on("load", resizePages);
+
+  // Redimensionar dinámicamente sin retraso
+  $(window).on("resize", resizePages);
+});
+
+
+
+
+
 

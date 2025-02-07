@@ -32,7 +32,7 @@ body {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 670px;
+  max-width: 1020px;
 }
 
 .book-cover {
@@ -79,16 +79,26 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  padding: 10%;
+  padding: 6%;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  overflow: hidden; /* Evita desbordamientos */
 }
 
 .content-inner {
-  width: 100%;
-  text-align: center;
+  font-size:0.8vw; /* Ajusta dinámicamente el tamaño del texto */
+  max-width: 100%; /* Evita que el texto se pase del ancho del contenedor */
+  max-height: 100%; /* Evita que el texto se pase de la altura del contenedor */
+  padding: 2px;
 }
+
+h4 ,h1{
+  margin: 0;
+  padding: 0;
+}
+
 
 .page-num-1 .pages-background {
   position: absolute;
@@ -105,7 +115,7 @@ body {
 }
 
 /* Media queries para dispositivos móviles en horizontal */
-@media screen and (max-width: 900px) and (orientation: landscape) {
+@media screen and (max-width: 930px) and (orientation: landscape) {
   body {
     padding: 10px;
   }
@@ -134,14 +144,18 @@ body {
   }
   
   .content-inner h1 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    margin-top: 0;
+    font-size:2vw;
+    padding: 1%;
   }
   
   .content-inner .text {
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    font-size:0.8vw;
+    max-width: 100%; /* Evita que el texto se pase del ancho del contenedor */
+    max-height: 100%; /* Evita que el texto se pase de la altura del contenedor */
+    padding: 2px;
   }
 }
+
 
 /* Ajustes para pantallas muy pequeñas */
 @media screen and (max-height: 400px) and (orientation: landscape) {
@@ -152,15 +166,28 @@ body {
   .pages-content {
     padding: 5%;
   }
+
+  .content-inner .text {
+    font-size:1.2vw;
+    max-width: 100%; /* Evita que el texto se pase del ancho del contenedor */
+    max-height: 100%; /* Evita que el texto se pase de la altura del contenedor */
+  }
 }
 
 /* Asegura la legibilidad en dispositivos pequeños */
 @media screen and (max-width: 480px) {
   .content-inner h1 {
-    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-size:2vw;
+    padding: 0px;
+    margin: 0px;
   }
   
+  /* evitar desbordamiento */
   .content-inner .text {
-    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    font-size: 1.2vw;
+    max-width: 100%; /* Evita que el texto se pase del ancho del contenedor */
+    max-height: 100%; /* Evita que el texto se pase de la altura del contenedor */
+    padding: 0px;
+    overflow: hidden;
   }
 }
