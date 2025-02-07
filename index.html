@@ -1,75 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregunta seria...</title>
-    <style>
-        .meamas {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        nav {
-          
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: nowrap; /* Evita que los elementos se apilen verticalmente */
-        }
-        a {
-            width: 50%; /* Cada enlace ocupa el 50% del ancho del contenedor */
-            height: auto;
-            background-color: aquamarine;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        img {
-        
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .circulo {
-
-          /* border-color: rgb(0, 0, 0); */
-          border-width: 5px ;
-          border-style: solid;
-          border-radius: 50%;
-          border-color: rgb(255, 137, 137);
-        
-        }
-        /* Ajustes para pantallas más pequeñas */
-        @media (max-width: 600px) {
-            a {
-                width: 50vw; /* Ajuste proporcional para pantallas muy pequeñas */
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
-    <header>
-        <div class="meamas">
-            <img src="https://cdn.memegenerator.es/descargar/2241552" alt="Me amas?">
+  <div class="container">
+    <div class="book-wrapper">
+      <div class="book-cover">
+        <img src="bookcover2.png" alt="">
+      </div>
+      <div class="pages-container">
+        <div class="pages">
+          <div class="page-num-1">
+            <div class="pages-content">
+              <div class="pages-background"></div>
+              <div class="content-inner">
+                <h1>Chapter 1</h1>
+                <div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas ea non vitae a assumenda sint quod, dolores laboriosam velit corrupti nobis cupiditate perspiciatis natus exercitationem, architecto esse ratione blanditiis! Itaque.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="page-num-2">
+            <div class="pages-content">
+              <div class="content-inner">
+                <h1>Chapter 2</h1>
+                <div class="text">
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, cumque autem! Magni eligendi qui officiis? Fugit iste voluptatum atque voluptatibus totam! Nisi accusantium saepe hic. Aut nobis nesciunt mollitia error.</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam odio modi, hic ratione fugit quod natus, excepturi quae minus voluptatum cupiditate quia magnam eveniet ex, reiciendis voluptates ipsam iste laudantium!</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati deserunt magnam, at perspiciatis aut. Voluptatem consequuntur neque quisquam?</p>
+                  </div>
+              </div>
+            </div>
+  
+          </div>
+          <div class="page-num-3">
+            <div class="pages-content">
+              <div class="content-inner">
+                <h1>Chapter 3</h1>
+                <div class="text"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate voluptas molestiae tempore amet adipisci dicta incidunt nisi alias distinctio fugit blanditiis dignissimos nobis deserunt eum consequuntur ipsam, perspiciatis numquam repellendus.</p>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus in odio deserunt est hic minima inventore, mollitia, officia aspernatur eaque voluptatibus? Amet, molestias adipisci delectus ea eligendi sit numquam illo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-num-4">
+            <div class="pages-content">
+              <div class="content-inner">
+                <h1>The End</h1>
+              </div>
+            </div>
+          </div>
         </div>
-    </header>
-    <h1 style="text-align: center;">Clic para elegir tu respuesta</h1>
-    <div>
-        <nav>
-            <a class="circulo" href="https://www.youtube.com/watch?v=VnQ28sC_oto">
-                <img class="circulo" src="https://as2.ftcdn.net/v2/jpg/00/98/24/45/1000_F_98244581_otL4Mr22a7X0YkGT4c4S4iyCAlioHA7w.jpg" alt="Sí">
-            </a>
-            <a class="circulo" href="https://youtu.be/1NDSngAEn54?si=-7BxQxdCzrxmV-eO&t=17">
-                <img class="circulo" src="https://media.istockphoto.com/id/495350227/es/foto/tarjeta-de-expresi%C3%B3n-decir-sin-palabras.jpg?s=1024x1024&w=is&k=20&c=eguBddTDwgpeakAY7QblMe2MP1GyllZ12BPV5Q_DRr8=" alt="No">
-            </a>
-        </nav>
+      </div>
     </div>
-
+  
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="script.js"></script>
 </body>
-<footer>
-  <p style="text-align: center;">&copy;By Dario &copy;</p>
-</footer>
 </html>
