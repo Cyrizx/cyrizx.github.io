@@ -26,20 +26,25 @@
 }
 
 .btn2{
-  margin-top: 0px;
+  margin-top: 10px;
+  display: none;
   align-items: center;
   justify-content: center;
-  display: flex !important;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 0;
+
 }
 
 .error {
-  background-color: rgb(0, 0, 0);
   text-align: center;
+  align-items: center;
+  justify-content: center;
   color: white;
   font-size: x-small;
-  border: black;
   border-radius: 15px;
-  padding: 10px;
+  padding: 0px;
 }
 
 .button {
