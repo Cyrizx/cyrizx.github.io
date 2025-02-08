@@ -111,16 +111,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("pwSignup");
   const passwordInput = document.getElementById("password");
   const errorMessage = document.getElementById("error-message");
+  const errorContainer = document.querySelector(".btn2"); // Selecciona el contenedor
 
   const mensajesError = [
       "Sigue intentando, pendeja",
       "JAJAJA, ¿en serio? No.",
-      "Esa no es, ash",
+      "Esa no es, ashh",
       "Pffff, ni cerca",
+      "Pen-de-JA",
+      "Sakmeiiiiii",
+      "Bueno, te quedaras con la duda",
       "Error, intenta otra vez",
       "Casi... pero no.",
-      "Pen-de-JA.",
-      "Sakmeiiiiiiiii.",
       "Dale que vos podés, o capaz no...",
       "JAJAJAJA, no.",
       "Andá a dormir mejor.",
@@ -128,13 +130,15 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   form.addEventListener("submit", function (event) {
-      event.preventDefault(); 
+      event.preventDefault(); // Evita el envío del formulario
 
       if (passwordInput.value === "quiereme") {
-          window.location.href = "/libro.html"; 
+          window.location.href = "/libro.html"; // Redirige a libro.html
       } else {
           const mensajeRandom = mensajesError[Math.floor(Math.random() * mensajesError.length)];
-          errorMessage.textContent = mensajeRandom; 
+          errorMessage.textContent = mensajeRandom; // Muestra un mensaje aleatorio
+          errorContainer.style.display = "block"; // Muestra el div con el mensaje de error
       }
   });
 });
+
