@@ -22,7 +22,6 @@ body:before {
   animation: flashlight 5000ms infinite;
 }
 body:after {
-  content: '';
   width: 25px;
   height: 10px;
   position: absolute;

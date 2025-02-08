@@ -10,7 +10,7 @@ var helperText = {
 
 var pattern = {
   charLength: function () {
-    if (password.value.length >= 7) {
+    if (password.value.length == 8) {
       return true;
     }
   },
@@ -105,4 +105,36 @@ $('#showPW').click(function () {
     $('#password').attr('type', 'password');
     $(this).addClass('hide');
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("pwSignup");
+  const passwordInput = document.getElementById("password");
+  const errorMessage = document.getElementById("error-message");
+
+  const mensajesError = [
+      "Sigue intentando, pendeja",
+      "JAJAJA, ¿en serio? No.",
+      "Esa no es, ash",
+      "Pffff, ni cerca",
+      "Error, intenta otra vez",
+      "Casi... pero no.",
+      "Pen-de-JA.",
+      "Sakmeiiiiiiiii.",
+      "Dale que vos podés, o capaz no...",
+      "JAJAJAJA, no.",
+      "Andá a dormir mejor.",
+      "Error 404: inteligencia no encontrada."
+  ];
+
+  form.addEventListener("submit", function (event) {
+      event.preventDefault(); 
+
+      if (passwordInput.value === "quiereme") {
+          window.location.href = "/libro.html"; 
+      } else {
+          const mensajeRandom = mensajesError[Math.floor(Math.random() * mensajesError.length)];
+          errorMessage.textContent = mensajeRandom; 
+      }
+  });
 });
