@@ -19,7 +19,7 @@ body:before {
   background-size: 300px 150px;
   background-position: center bottom;
   clip-path: circle(150px at center center);
-  animation: flashlight 500000ms infinite;
+  animation: flashlight 30000ms infinite;
 }
 body:after {
   width: 25px;
@@ -31,7 +31,7 @@ body:after {
   background-image: radial-gradient(circle, #fff 50%, transparent 50%), radial-gradient(circle, #fff 50%, transparent 50%);
   background-size: 10px 10px;
   background-position: left center, right center;
-  animation: eyes 10000ms infinite;
+  animation: eyes 1000ms infinite;
 }
 @-moz-keyframes flashlight {
   0%, 9% {

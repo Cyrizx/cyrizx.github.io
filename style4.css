@@ -144,6 +144,7 @@
   margin: 0;
   font-family: sans-serif;
   color: #fff;
+  touch-action: manipulation;
 }
 .inp-password input:focus {
   outline: none;
