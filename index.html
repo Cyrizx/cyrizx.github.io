@@ -110,10 +110,27 @@
     </style>
 </head>
 <body>
+  <audio id="ambient-sound" autoplay loop>
+    <source src="sound.mp3" type="audio/mpeg">
+    Tu navegador no soporta el audio.
+    </audio>
+    
+    <script>
+      document.addEventListener("click", function () {
+          const audio = document.getElementById("ambient-sound");
+          audio.volume = 0.05;
+          if (audio.paused) {
+              audio.play().catch(error => console.log("El navegador bloqueó la reproducción automática."));
+          }
+      }, { once: true });
+  </script>
+    </script>
     <div class="background-overlay"></div>
     <div class="login-box">
-        <input type="password" id="password" class="form-control" placeholder="••••••" onkeydown="handleKeyPress(event)">
-        <button class="btn btn-custom mt-3 w-100" onclick="validateLogin()">LOGIN</button>
+      <input type="password" id="password" class="form-control" placeholder="••••••" onkeydown="handleKeyPress(event)">
+      <button class="btn btn-custom mt-3 w-100" onclick="validateLogin()">LOGIN</button>
+    </div>
+    <div>
     </div>
     <div class="error-popup" id="error-popup"><span id="error-text" class="typing-effect"></span></div>
 
