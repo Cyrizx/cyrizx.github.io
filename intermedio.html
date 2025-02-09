@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .typing-effect {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+            animation: typing 2s steps(40, end) forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="messages-container"></div>
+    
+    <script>
+
+        function checkSession() {
+            const session = JSON.parse(localStorage.getItem("sessionToken"));
+
+            if (!session || !session.valid || Date.now() > session.expires) {
+                // Si no hay sesión válida, redirigir al login
+                alert("Tu sesión ha expirado. Debes volver a ingresar la contraseña.");
+                window.location.href = "/index.html";
+            }
+        }
+
+        // Ejecutar la verificación al cargar la página
+        checkSession();
+
+        const messages = [
+            "Bienvenida de nuevo, nuestro libro te esperaba...", 
+            "El papel puede desgastarse, pero lo escrito en él vivirá por siempre...", 
+            "Aquí están nuestras memorias, nuestras risas y suspiros...", 
+            "Recuerda...", 
+            "Este libro tiene no tiene final, solo más capítulos por descubrir...",
+            "es el testigo de todo lo que somos...", 
+            "Pasa, sigue leyendo, sigamos escribiendo juntos..."
+        ];
+        
+        const container = document.getElementById("messages-container");
+        let i = 0;
+        
+        function typeMessage() {
+            if (i < messages.length) {
+                container.innerHTML = ""; // Borra el mensaje anterior
+                const span = document.createElement("span");
+                span.classList.add("typing-effect");
+                container.appendChild(span);
+                
+                let message = messages[i];
+                let j = 0;
+                function typeChar() {
+                    if (j < message.length) {
+                        span.textContent += message[j];
+                        j++;
+                        setTimeout(typeChar, 50);
+                    } else {
+                        i++;
+                        setTimeout(typeMessage, 1500); // Espera un poco antes de mostrar el siguiente
+                    }
+                }
+                typeChar();
+            } else {
+                setTimeout(() => {
+                    window.location.href = "/libro.html";
+                }, 2000);
+            }
+        }
+        
+        typeMessage();
+    </script>
+</body>
+</html>

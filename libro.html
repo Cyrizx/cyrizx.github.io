@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Book</title>
   <link rel="stylesheet" href="style.css">
   
 </head>
@@ -19,6 +19,19 @@
             <div class="pages-content">
               <div class="pages-background"></div>
               <div class="content-inner">
+                <h1>El contrato eterno</h1>
+                <div class="text">
+                  <p>Cuando el destino se teje en la sombra de las palabras.</p>
+                  <i>Existen vínculos que no necesitan presencia, solo palabras que cruzan el espacio y el tiempo.</i>
+                  <p>2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-num-2">
+            <div class="pages-content">
+              <div class="pages-background"></div>
+              <div class="content-inner">
                 <h1>Prologo</h1>
                 <div class="text"><p>A veces, las historias de amor no comienzan con una mirada o un roce accidental. A veces, empiezan con un mensaje en Facebook, con una consulta casual que sin darnos cuenta se convierte en algo mucho más grande. Así comenzó nuestra historia.
 
@@ -30,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div class="page-num-2">
+          <div class="page-num-3">
             <div class="pages-content">
               <div class="content-inner">
                 <h1>Capitulo 1</h1>
@@ -38,7 +51,7 @@
                 <div class="text">
                   <p>Corría el año 2015 cuando le envié un mensaje en Facebook a la administradora de una página de League of Legends. No era nada especial, solo una consulta sobre un problema que había tenido un amigo con una página que promocionaban ellos. Pero ese mensaje cambió mi vida.
 
-                    Ella se llamaba Sakmei. En ese entonces, trabajaba en un call center y administraba esa comunidad de jugadores. No sé en qué momento la conversación pasó de ser algo técnico a convertirse en una charla fluida sobre juegos, música y todo lo que nos gustaba. Desde ese día, hablar con ella se volvió parte de mi rutina.
+                    Ella se llamaba hacia llamar Sakmei. En ese entonces, trabajaba en un call center y administraba esa comunidad de jugadores. No sé en qué momento la conversación pasó de ser algo técnico a convertirse en una charla fluida sobre juegos, música y todo lo que nos gustaba. Desde ese día, hablar con ella se volvió parte de mi rutina.
                     
                     Y lo increíble es que, diez años después, todavía lo es.</p>
                   </div>
@@ -46,7 +59,7 @@
             </div>
   
           </div>
-          <div class="page-num-3">
+          <div class="page-num-4">
             <div class="pages-content">
               <div class="content-inner">
                 <h1>Capítulo 2</h1>
@@ -68,7 +81,7 @@
               </div>
               
             </div>
-          <div class="page-num-4">
+          <div class="page-num-5">
             <div class="pages-content">
               <div class="content-inner">
                 <h1>Capítulo 3</h1>
@@ -81,7 +94,7 @@
               </div>
             </div>
           </div>
-          <div class="page-num-5">
+          <div class="page-num-6">
             <div class="pages-content">
               <div class="content-inner">
                 <h1>Capítulo 4</h1>
@@ -96,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="page-num-6">
+          <div class="page-num-7">
             <div class="pages-content">
               <div class="content-inner">
                 <h1>Continuará...</h1>
@@ -108,6 +121,18 @@
     </div>
   
   </div>
+  <script>
+    checkSession();
+    
+            function checkSession() {
+            const session = JSON.parse(localStorage.getItem("sessionToken"));
+
+            if (!session || !session.valid || Date.now() > session.expires) {
+                alert("Tu sesión ha expirado. Debes volver a ingresar la contraseña.");
+                window.location.href = "/index.html";
+            }
+        }
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>

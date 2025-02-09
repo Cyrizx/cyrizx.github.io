@@ -31,8 +31,12 @@
         }
 
         @keyframes darkenPulse {
-            0% { background: rgba(0, 0, 0, 0.1); }
-            100% { background: rgba(0, 0, 0, 0.5); }
+            0% {
+                background: rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                background: rgba(0, 0, 0, 0.5);
+            }
         }
 
         .login-box {
@@ -112,41 +116,19 @@
 <body>
     <div class="background-overlay"></div>
     <div class="login-box">
-        <input type="password" id="password" class="form-control" placeholder="••••••" onkeydown="handleKeyPress(event)">
+        <input type="password" id="password" class="form-control" placeholder="••••••">
         <button class="btn btn-custom mt-3 w-100" onclick="validateLogin()">LOGIN</button>
     </div>
     <div class="error-popup" id="error-popup"><span id="error-text" class="typing-effect"></span></div>
 
     <script>
-        async function hashPassword(password) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(password);
-            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-        }
-
-        async function validateLogin() {
+        function validateLogin() {
             const password = document.getElementById("password").value;
-            const hashedPassword = await hashPassword(password);
-
-            const storedHash = "e2f8e0fb5df20081f5ef6b51c01345ad6870a2422598b24cfe1824ad50ca0d50";
-
-            if (hashedPassword === storedHash) {
-                const expirationTime = Date.now() + 3 * 60 * 60 * 1000;
-                localStorage.setItem("sessionToken", JSON.stringify({ valid: true, expires: expirationTime }));
-
-                window.location.href = "/intermedio.html";
-            } else {
-                showErrorMessage();
-            }
-        }
-
-        function showErrorMessage() {
             const errorPopup = document.getElementById("error-popup");
             const errorText = document.getElementById("error-text");
             const errorMessages = [
                 "El guardián no reconoce tu clave...",
+                "El hechizo no es correcto...",
                 "El acceso está sellado... intenta otra vez.",
                 "La contraseña se desvaneció en la oscuridad...",
                 "Las sombras susurran... este no es el camino correcto.",
@@ -157,16 +139,14 @@
                 "El eco distante responde… pero no con la respuesta correcta."
             ];
             
-            const randomError = errorMessages[Math.floor(Math.random() * errorMessages.length)];
-            errorText.textContent = randomError;
-            errorPopup.style.display = "block";
-            errorText.style.animation = "typing 2s steps(40, end) forwards";
-            setTimeout(() => { errorPopup.style.display = "none"; }, 3000);
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === "Enter") {
-                validateLogin();
+            if (password === "quiereme") {
+                window.location.href = "/intermedio.html";
+            } else {
+                const randomError = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+                errorText.textContent = randomError;
+                errorPopup.style.display = "block";
+                errorText.style.animation = "typing 2s steps(40, end) forwards";
+                setTimeout(() => { errorPopup.style.display = "none"; }, 3000);
             }
         }
     </script>
