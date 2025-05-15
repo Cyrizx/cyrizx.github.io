@@ -36,20 +36,32 @@ function generarPDF() {
       wrapper.appendChild(pdfContent);
       pdfPlaceholder.appendChild(wrapper);
 
-      // Generar y descargar PDF directamente
-      html2pdf()
-        .set({
-          margin: 0,
-          filename: 'evaluacion.pdf',
-          html2canvas: { scale: 3, useCORS: true },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        })
-        .from(pdfContent)
-        .save() // ✅ descarga automática
-        .then(() => {
-          pdfContent.remove(); // limpieza del DOM
+      // Esperar a que todas las imágenes estén cargadas
+      const imagenes = pdfContent.querySelectorAll('img');
+      const promesasCarga = Array.from(imagenes).map(img => {
+        return new Promise(resolve => {
+          if (img.complete && img.naturalHeight !== 0) return resolve();
+          img.onload = resolve;
+          img.onerror = resolve;
         });
+      });
+
+      Promise.all(promesasCarga).then(() => {
+        // Generar y descargar PDF directamente
+        html2pdf()
+          .set({
+            margin: 0,
+            filename: 'evaluacion.pdf',
+            html2canvas: { scale: 3, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          })
+          .from(pdfContent)
+          .save()
+          .then(() => {
+            pdfContent.remove(); // limpieza del DOM
+          });
+      });
     })
     .catch(err => {
       console.error("Error al cargar template.html:", err);
