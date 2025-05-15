@@ -47,7 +47,7 @@ function generarPDF() {
       });
 
       Promise.all(promesasCarga).then(() => {
-        // Generar y descargar PDF directamente
+        // Generar el PDF y subir a File.io
         html2pdf()
           .set({
             margin: 0,
@@ -57,9 +57,38 @@ function generarPDF() {
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
           })
           .from(pdfContent)
-          .save()
-          .then(() => {
-            pdfContent.remove(); // limpieza del DOM
+          .outputPdf('blob')
+          .then(blob => {
+            const formData = new FormData();
+            formData.append("file", blob, "evaluacion.pdf");
+
+            fetch("https://file.io/?expires=1d", {
+              method: "POST",
+              body: formData
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.success) {
+                  const link = document.createElement('a');
+                  link.href = data.link;
+                  link.textContent = "📄 Descargar PDF generado";
+                  link.target = "_blank";
+                  link.className = "btn btn-outline-primary mt-3";
+
+                  const output = document.getElementById("pdf-placeholder");
+                  output.innerHTML = '';
+                  output.appendChild(link);
+                } else {
+                  alert("Error al subir el PDF.");
+                  console.error(data);
+                }
+                pdfContent.remove();
+              })
+              .catch(err => {
+                alert("Error al conectar con file.io");
+                console.error(err);
+                pdfContent.remove();
+              });
           });
       });
     })
