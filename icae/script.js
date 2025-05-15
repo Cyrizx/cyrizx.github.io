@@ -62,15 +62,15 @@ function generarPDF() {
             const formData = new FormData();
             formData.append("file", blob, "evaluacion.pdf");
 
-            fetch("https://file.io/?expires=1d", {
+            fetch("https://store1.gofile.io/uploadFile", {
               method: "POST",
               body: formData
             })
               .then(res => res.json())
               .then(data => {
-                if (data.success) {
+                if (data.status === "ok") {
                   const link = document.createElement('a');
-                  link.href = data.link;
+                  link.href = data.data.downloadPage;
                   link.textContent = "📄 Descargar PDF generado";
                   link.target = "_blank";
                   link.className = "btn btn-outline-primary mt-3";
