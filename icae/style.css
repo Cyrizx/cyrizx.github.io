@@ -1,0 +1,58 @@
+/* Eliminar márgenes no deseados */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 210mm;
+  height: 297mm;
+  background: white;
+}
+
+.formulario {
+  margin-bottom: 20px;
+}
+
+#pdf-content {
+  position: relative;
+  overflow: hidden;
+}
+
+#pdf-content::before {
+  content: '';
+  display: block;
+  width: 210mm;
+  height: 297mm;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: white;
+}
+
+.img-container {
+  width: 146px;
+  height: 238px;
+  overflow: hidden;
+  margin: 0 auto 8px auto;
+}
+
+
+.firma {
+  margin-top: 60px;
+}
+
+.page-break {
+  page-break-before: always;
+}
+
+.gallery-img {
+  width: 146px;
+  height: 238px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
