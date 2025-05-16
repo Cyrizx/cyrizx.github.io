@@ -2,11 +2,18 @@ function generarPDF() {
   const nombre = document.getElementById('input-nombre').value.trim();
   const resultado = document.getElementById('input-resultado').value.trim();
   const numero = document.getElementById('input-numero').value.trim();
+  const fechaInput = document.getElementById('input-fecha').value;
 
-  if (!nombre || !resultado || !numero) {
+  if (!nombre || !resultado || !numero || !fechaInput) {
     alert("Completá todos los campos antes de generar el PDF.");
     return;
   }
+
+  // Formatear fecha manualmente
+  const [anio, mes, dia] = fechaInput.split("-");
+  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const fechaFormateada = `${parseInt(dia)} de ${meses[parseInt(mes) - 1]} del ${anio}`;
 
   const pdfPlaceholder = document.getElementById('pdf-placeholder');
   pdfPlaceholder.innerHTML = '';
@@ -17,24 +24,11 @@ function generarPDF() {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const pdfContent = doc.querySelector('#pdf-content');
 
-      // Insertar los datos en el template
+      // Insertar datos básicos
       pdfContent.querySelector('#nombre-pdf').textContent = nombre;
       pdfContent.querySelector('#numero-pdf').textContent = numero;
-      const fechaInput = document.getElementById('input-fecha').value;
-      if (!fechaInput) {
-        alert("Seleccioná una fecha para el examen.");
-        return;
-      }
-
-      // Convertir "YYYY-MM-DD" a "DD de mes de YYYY"
-      const [anio, mes, dia] = fechaInput.split("-");
-      const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-                    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      const fechaFormateada = `${parseInt(dia)} de ${meses[parseInt(mes) - 1]} del ${anio}`;
-
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
 
-      // Preparar contenido para el PDF
       pdfContent.style.display = 'block';
       pdfContent.style.position = 'relative';
       pdfContent.style.margin = '0';
@@ -44,18 +38,37 @@ function generarPDF() {
       wrapper.appendChild(pdfContent);
       pdfPlaceholder.appendChild(wrapper);
 
-      // Esperar a que todas las imágenes estén cargadas
-      const imagenes = pdfContent.querySelectorAll('img');
-      const promesasCarga = Array.from(imagenes).map(img => {
+      // Cargar imágenes desde los inputs
+      const campos = [
+        { inputId: 'input-eme1', imgId: 'img-eme1' },
+        { inputId: 'input-eme2', imgId: 'img-eme2' },
+        { inputId: 'input-prm1', imgId: 'img-prm1' },
+        { inputId: 'input-prm2', imgId: 'img-prm2' }
+      ];
+
+      const promesasCarga = campos.map(({ inputId, imgId }) => {
+        const input = document.getElementById(inputId);
+        const img = pdfContent.querySelector(`#${imgId}`);
+
         return new Promise(resolve => {
-          if (img.complete && img.naturalHeight !== 0) return resolve();
-          img.onload = resolve;
-          img.onerror = resolve;
+          if (input && input.files.length > 0 && img) {
+            const reader = new FileReader();
+            reader.onload = e => {
+              img.src = e.target.result;
+              resolve();
+            };
+            reader.readAsDataURL(input.files[0]);
+          } else if (img) {
+            img.remove(); // si no hay imagen cargada, eliminarla del template
+            resolve();
+          } else {
+            resolve();
+          }
         });
       });
 
       Promise.all(promesasCarga).then(() => {
-        // Generar el PDF y subir a File.io
+        // Generar y subir PDF
         html2pdf()
           .set({
             margin: 0,
@@ -83,17 +96,16 @@ function generarPDF() {
                   link.target = "_blank";
                   link.className = "btn btn-outline-primary mt-3";
 
-                  const output = document.getElementById("pdf-placeholder");
-                  output.innerHTML = '';
-                  output.appendChild(link);
+                  pdfPlaceholder.innerHTML = '';
+                  pdfPlaceholder.appendChild(link);
                 } else {
-                  alert("Error al subir el PDF.");
+                  alert("Error al subir a GoFile.");
                   console.error(data);
                 }
                 pdfContent.remove();
               })
               .catch(err => {
-                alert("Error al conectar con file.io");
+                alert("No se pudo conectar a GoFile.io");
                 console.error(err);
                 pdfContent.remove();
               });
