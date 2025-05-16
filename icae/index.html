@@ -12,14 +12,24 @@
     <h1 class="mb-4">Formulario - Reporte de Evaluación</h1>
 
     <div class="row g-3">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <label class="form-label">Nombre del Participante</label>
-        <input type="text" id="input-nombre" class="form-control" placeholder="Ej: Naily Monserrath..." />
+        <input type="text" id="input-nombre" class="form-control" placeholder="Ej: MARIA..." />
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-12">
+        <label class="form-label">Fecha del examen</label>
+        <input type="date" id="input-fecha" class="form-control" />
+      </div>
+
+      <div class="col-md-12">
         <label class="form-label">Resultado</label>
-        <input type="text" id="input-resultado" class="form-control" placeholder="Ej: Aprobado, Reprobado..." />
+        <select id="input-resultado" class="form-select">
+          <option value="" selected disabled>Seleccioná una opción</option>
+          <option value="Aprobado">Aprobado</option>
+          <option value="Reprobado">Reprobado</option>
+          <option value="Ausente">Ausente</option>
+        </select>
       </div>
 
       <div class="col-md-12">

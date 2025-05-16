@@ -20,11 +20,19 @@ function generarPDF() {
       // Insertar los datos en el template
       pdfContent.querySelector('#nombre-pdf').textContent = nombre;
       pdfContent.querySelector('#numero-pdf').textContent = numero;
-      pdfContent.querySelector('#fecha-pdf').textContent = new Date().toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
+      const fechaInput = document.getElementById('input-fecha').value;
+      if (!fechaInput) {
+        alert("Seleccioná una fecha para el examen.");
+        return;
+      }
+
+      // Convertir "YYYY-MM-DD" a "DD de mes de YYYY"
+      const [anio, mes, dia] = fechaInput.split("-");
+      const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      const fechaFormateada = `${parseInt(dia)} de ${meses[parseInt(mes) - 1]} del ${anio}`;
+
+      pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
 
       // Preparar contenido para el PDF
       pdfContent.style.display = 'block';
