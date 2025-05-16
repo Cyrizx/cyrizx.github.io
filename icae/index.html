@@ -107,6 +107,22 @@
     <!-- Acá aparecerá el enlace para ver/descargar -->
     <div id="pdf-placeholder" class="mt-4"></div>
   </div>
+<script>
+  let hayCambios = false;
+
+  // Detectar cambios en los inputs de texto, select y archivos
+  document.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('change', () => {
+      hayCambios = true;
+    });
+  });
+
+  window.onbeforeunload = function () {
+    if (hayCambios) {
+      return "Hay datos cargados. ¿Seguro que querés salir y perderlos? mmmm";
+    }
+  };
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
