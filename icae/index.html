@@ -6,14 +6,27 @@
   <title>Generador de PDF - ICAE</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body class="p-4">
+<body class="">
+    <img src="logo1.png" alt="Logo ICAE" style="
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-height: 153px;
+      z-index: 10;
+    ">
 
-  <div class="container">
-    <h1 class="mb-4">Formulario - Reporte de Evaluación</h1>
+    <!-- Fondo azul -->
+    <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
+    </div>
+  <div class="container px-4">
+
+    
+    <h1 class="mb-4 text-center fw-bold" style="margin-top: 108px;">Reporte de Evaluación</h1>
 
     <div class="row g-3">
       <div class="col-md-12">
-        <label class="form-label">Nombre del Participante</label>
+        <label class="form-label">Nombre del Alumno</label>
         <input type="text" id="input-nombre" class="form-control" placeholder="" />
       </div>
 
@@ -22,7 +35,7 @@
         <input type="date" id="input-fecha" class="form-control" />
       </div>
 
-      <div class="col-md-12">
+      <div class="col-6">
         <label class="form-label">Resultado</label>
         <select id="input-resultado" class="form-select">
           <option value="" selected disabled>Seleccioná una opción</option>
@@ -32,21 +45,23 @@
         </select>
       </div>
 
-      <div class="col-md-12">
+      <div class="col-6">
         <label class="form-label">Número de control</label>
         <input type="text" id="input-numero" class="form-control" placeholder="" />
       </div>
       <hr>
 
+      <h3 class="fw-bold">Imágenes</h3>
+
       <div class="col-md-12">
-        <label class="form-label">Equipo de Emergencia</label>
+        <label class="form-label fw-bold">1. Equipo de Emergencia</label> <span id="check-eme" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-eme1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-eme2" class="form-control" accept="image/*" />
       </div>
       <hr>
       <div class="col-md-12">
-        <label class="form-label">Primeros Auxilios</label>
+        <label class="form-label fw-bold">2. Primeros Auxilios</label> <span id="check-prm" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-prm1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-prm2" class="form-control" accept="image/*" />
@@ -55,7 +70,7 @@
       <hr>
 
       <div class="col-md-12">
-        <label class="form-label">Mercancías Peligrosas</label>
+        <label class="form-label fw-bold">3. Mercancías Peligrosas</label> <span id="check-mep" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-mep1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-mep2" class="form-control" accept="image/*" />
@@ -64,7 +79,7 @@
       <hr>
 
       <div class="col-md-12">
-        <label class="form-label">Despresurizacion de cabina</label>
+        <label class="form-label fw-bold">4. Despresurizacion de cabina</label> <span id="check-desc" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-desc1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-desc2" class="form-control" accept="image/*" />
@@ -73,7 +88,7 @@
       <hr>
 
       <div class="col-md-12">
-        <label class="form-label">Emergencia no planeada</label>
+        <label class="form-label fw-bold">5. Emergencia no planeada</label> <span id="check-emep" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-emep1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-emep2" class="form-control" accept="image/*" />
@@ -83,7 +98,7 @@
 
       
       <div class="col-md-12">
-        <label class="form-label">Emergencia planeada </label>
+        <label class="form-label fw-bold">6. Emergencia planeada</label> <span id="check-emepp" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-emepp1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-emepp2" class="form-control" accept="image/*" />
@@ -92,7 +107,7 @@
       <hr>
       
       <div class="col-md-12">
-        <label class="form-label">Humo en cabina </label>
+        <label class="form-label fw-bold">7. Humo en cabina</label> <span id="check-humc" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
         <input type="file" id="input-humc1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-humc2" class="form-control" accept="image/*" />

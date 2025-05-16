@@ -162,9 +162,39 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
     });
 }
 
+function configurarChecksPorSeccion() {
+  const secciones = [
+    { id: 'eme', inputs: ['input-eme1', 'input-eme2'] },
+    { id: 'prm', inputs: ['input-prm1', 'input-prm2'] },
+    { id: 'mep', inputs: ['input-mep1', 'input-mep2'] },
+    { id: 'desc', inputs: ['input-desc1', 'input-desc2'] },
+    { id: 'emep', inputs: ['input-emep1', 'input-emep2'] },
+    { id: 'emepp', inputs: ['input-emepp1', 'input-emepp2'] },
+    { id: 'humc', inputs: ['input-humc1', 'input-humc2'] }
+  ];
+
+  secciones.forEach(({ id, inputs }) => {
+    const check = document.getElementById(`check-${id}`);
+    const input1 = document.getElementById(inputs[0]);
+    const input2 = document.getElementById(inputs[1]);
+
+    const validar = () => {
+      if (input1.files.length > 0 && input2.files.length > 0) {
+        check.style.display = 'inline';
+      } else {
+        check.style.display = 'none';
+      }
+    };
+
+    input1.addEventListener('change', validar);
+    input2.addEventListener('change', validar);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const boton = document.getElementById('btn-generar');
   if (boton) {
     boton.addEventListener('click', generarPDF);
   }
+  configurarChecksPorSeccion();
 });
