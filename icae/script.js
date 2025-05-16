@@ -14,8 +14,8 @@ function generarPDF() {
                  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   const fechaFormateada = `${parseInt(dia)} de ${meses[parseInt(mes) - 1]} del ${anio}`;
 
-  const pdfPlaceholder = document.getElementById('pdf-placeholder');
-  pdfPlaceholder.innerHTML = '';
+  document.getElementById('pdf-render').innerHTML = '';
+  document.getElementById('pdf-link-container').innerHTML = '';
 
   fetch('template.html')
     .then(r => r.text())
