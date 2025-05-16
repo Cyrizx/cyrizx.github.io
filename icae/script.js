@@ -23,8 +23,19 @@ function generarPDF() {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const pdfContent = doc.querySelector('#pdf-content');
 
-      pdfContent.querySelector('#nombre-pdf').textContent = nombre;
-      pdfContent.querySelector('#numero-pdf').textContent = numero;
+      pdfContent.querySelector('#nombre-texto').textContent = nombre;
+      pdfContent.querySelector('#nombre-participante').textContent = nombre;
+      pdfContent.querySelector('#nombre-pagina2').textContent = nombre;
+      pdfContent.querySelector('#nombre-pagina3').textContent = nombre;
+
+
+
+
+      pdfContent.querySelector('#numero-texto').textContent = numero;
+      pdfContent.querySelector('#numero-pagina2').textContent = numero;
+      pdfContent.querySelector('#numero-pagina3').textContent = numero;
+
+
       pdfContent.querySelector('#resultado-pdf').textContent = resultado;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
 
