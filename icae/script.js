@@ -23,7 +23,6 @@ function generarPDF() {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const pdfContent = doc.querySelector('#pdf-content');
 
-      // Insertar los datos
       pdfContent.querySelector('#nombre-pdf').textContent = nombre;
       pdfContent.querySelector('#numero-pdf').textContent = numero;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
@@ -40,10 +39,36 @@ function generarPDF() {
       wrapper.appendChild(pdfContent);
       pdfPlaceholder.appendChild(wrapper);
 
-      // Cargar imágenes en inputs (opcional si estás usando)
-      const promesasImagenes = []; // podés agregar si usás input file
+      const campos = [
+        { inputId: 'input-eme1', imgId: 'img-eme1' },
+        { inputId: 'input-eme2', imgId: 'img-eme2' },
+        { inputId: 'input-prm1', imgId: 'img-prm1' },
+        { inputId: 'input-prm2', imgId: 'img-prm2' }
+        // Podés agregar más si les das IDs únicos en el index
+      ];
 
-      Promise.all(promesasImagenes).then(() => {
+      const promesasCarga = campos.map(({ inputId, imgId }) => {
+        const input = document.getElementById(inputId);
+        const img = pdfContent.querySelector(`#${imgId}`);
+
+        return new Promise(resolve => {
+          if (input && input.files.length > 0 && img) {
+            const reader = new FileReader();
+            reader.onload = e => {
+              img.src = e.target.result;
+              resolve();
+            };
+            reader.readAsDataURL(input.files[0]);
+          } else if (img) {
+            img.remove();
+            resolve();
+          } else {
+            resolve();
+          }
+        });
+      });
+
+      Promise.all(promesasCarga).then(() => {
         const pages = pdfContent.querySelectorAll('.pdf-page');
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
@@ -51,36 +76,37 @@ function generarPDF() {
 
         const renderPage = (index) => {
           if (index >= pages.length) {
-            pdf.output('blob').then(blob => {
-              const formData = new FormData();
-              formData.append("file", blob, "evaluacion.pdf");
+            const blob = pdf.output('blob'); // ⬅️ CORREGIDO: ya no usa .then
 
-              fetch("https://store1.gofile.io/uploadFile", {
-                method: "POST",
-                body: formData
+            const formData = new FormData();
+            formData.append("file", blob, "evaluacion.pdf");
+
+            fetch("https://store1.gofile.io/uploadFile", {
+              method: "POST",
+              body: formData
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.status === "ok") {
+                  const link = document.createElement('a');
+                  link.href = data.data.downloadPage;
+                  link.textContent = "📄 Descargar PDF generado";
+                  link.target = "_blank";
+                  link.className = "btn btn-outline-primary mt-3";
+                  pdfPlaceholder.innerHTML = '';
+                  pdfPlaceholder.appendChild(link);
+                } else {
+                  alert("Error al subir a GoFile.");
+                  console.error(data);
+                }
+                pdfContent.remove();
               })
-                .then(res => res.json())
-                .then(data => {
-                  if (data.status === "ok") {
-                    const link = document.createElement('a');
-                    link.href = data.data.downloadPage;
-                    link.textContent = "📄 Descargar PDF generado";
-                    link.target = "_blank";
-                    link.className = "btn btn-outline-primary mt-3";
-                    pdfPlaceholder.innerHTML = '';
-                    pdfPlaceholder.appendChild(link);
-                  } else {
-                    alert("Error al subir a GoFile.");
-                    console.error(data);
-                  }
-                  pdfContent.remove();
-                })
-                .catch(err => {
-                  alert("No se pudo conectar a GoFile.io");
-                  console.error(err);
-                  pdfContent.remove();
-                });
-            });
+              .catch(err => {
+                alert("No se pudo conectar a GoFile.io");
+                console.error(err);
+                pdfContent.remove();
+              });
+
             return;
           }
 
@@ -98,6 +124,10 @@ function generarPDF() {
 
         renderPage(0);
       });
+    })
+    .catch(err => {
+      console.error("Error al cargar template.html:", err);
+      alert("No se pudo cargar la plantilla.");
     });
 }
 
