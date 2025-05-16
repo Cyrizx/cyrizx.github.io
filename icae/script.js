@@ -24,17 +24,13 @@ function generarPDF() {
       const pdfContent = doc.querySelector('#pdf-content');
 
       pdfContent.querySelector('#nombre-texto').textContent = nombre;
-      pdfContent.querySelector('#nombre-participante').textContent = nombre;
+      pdfContent.querySelector('#nombre-participante').textContent = nombre.toUpperCase();
       pdfContent.querySelector('#nombre-pagina2').textContent = nombre;
       pdfContent.querySelector('#nombre-pagina3').textContent = nombre;
-
-
-
 
       pdfContent.querySelector('#numero-texto').textContent = numero;
       pdfContent.querySelector('#numero-pagina2').textContent = numero;
       pdfContent.querySelector('#numero-pagina3').textContent = numero;
-
 
       pdfContent.querySelector('#resultado-pdf').textContent = resultado;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
@@ -107,7 +103,8 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
             const blob = pdf.output('blob');
 
             const formData = new FormData();
-            formData.append("file", blob, "evaluacion.pdf");
+            const nombreArchivo = `evaluacion_${numero}.pdf`;
+            formData.append("file", blob, nombreArchivo);
 
             fetch("https://store1.gofile.io/uploadFile", {
               method: "POST",
