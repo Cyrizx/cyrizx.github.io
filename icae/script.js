@@ -1,6 +1,6 @@
 function generarPDF() {
   const nombre = document.getElementById('input-nombre').value.trim();
-  const resultado = document.getElementById('input-resultado').value.trim();
+  const resultado = document.getElementById('input-resultado').value;
   const numero = document.getElementById('input-numero').value.trim();
   const fechaInput = document.getElementById('input-fecha').value;
 
