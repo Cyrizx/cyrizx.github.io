@@ -25,10 +25,8 @@ function generarPDF() {
 
       pdfContent.querySelector('#nombre-pdf').textContent = nombre;
       pdfContent.querySelector('#numero-pdf').textContent = numero;
+      pdfContent.querySelector('#input-resultado').textContent = resultado;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
-
-      if (pdfContent.querySelector('#nombre-fotos')) pdfContent.querySelector('#nombre-fotos').textContent = nombre;
-      if (pdfContent.querySelector('#numero-fotos')) pdfContent.querySelector('#numero-fotos').textContent = numero;
 
       pdfContent.style.display = 'block';
       pdfContent.style.position = 'relative';
