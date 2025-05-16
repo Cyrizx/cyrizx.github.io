@@ -45,6 +45,7 @@ function generarPDF() {
 
       Promise.all(promesasImagenes).then(() => {
         const pages = pdfContent.querySelectorAll('.pdf-page');
+        const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
         const options = { scale: 2, useCORS: true };
 
