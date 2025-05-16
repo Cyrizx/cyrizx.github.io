@@ -9,6 +9,8 @@ function generarPDF() {
     return;
   }
 
+  document.getElementById('pdf-loader').style.display = 'inline-block';
+
   const [anio, mes, dia] = fechaInput.split("-");
   const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
                  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
@@ -118,11 +120,12 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
                 if (data.status === "ok") {
                   const link = document.createElement('a');
                   link.href = data.data.downloadPage;
-                  link.textContent = "📄 Descargar PDF generado";
+                  link.textContent = `📄 Descargar Evaluacion de ${nombre} `;
                   link.target = "_blank";
-                  link.className = "btn btn-outline-primary mt-3";
+                  link.className = "btn btn-outline-primary";
                   document.getElementById('pdf-link-container').innerHTML = '';
                   document.getElementById('pdf-link-container').appendChild(link);
+                  document.getElementById('pdf-loader').style.display = 'none';
                 } else {
                   alert("Error al subir a GoFile.");
                   console.error(data);

@@ -14,7 +14,7 @@
     <div class="row g-3">
       <div class="col-md-12">
         <label class="form-label">Nombre del Participante</label>
-        <input type="text" id="input-nombre" class="form-control" placeholder="Ej: MARIA..." />
+        <input type="text" id="input-nombre" class="form-control" placeholder="" />
       </div>
 
       <div class="col-md-12">
@@ -34,7 +34,7 @@
 
       <div class="col-md-12">
         <label class="form-label">Número de control</label>
-        <input type="text" id="input-numero" class="form-control" placeholder="Ej: 7088" />
+        <input type="text" id="input-numero" class="form-control" placeholder="" />
       </div>
       <hr>
 
@@ -102,14 +102,21 @@
 
     </div>
 
-    <button id="btn-generar" class="btn btn-success mt-4">Generar PDF</button>
-
+  <div class="d-flex align-items-center gap-2">
+    <button id="btn-generar" class="btn btn-success">Generar PDF</button>
+    <div id="pdf-loader" class="spinner-border text-success" role="status" style="display: none; width: 1.5rem; height: 1.5rem;">
+      <span class="visually-hidden">Generando...</span>
+    </div>
     <!-- Acá aparecerá el enlace para ver/descargar -->
     <div id="pdf-placeholder">
       <div id="pdf-render" style="position: absolute; top: -9999px; left: -9999px;"></div>
-      <div id="pdf-link-container" class="mt-4"></div>
+      <div id="pdf-link-container"  ></div>
     </div>
-    
+
+  </div>
+
+
+
   </div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
