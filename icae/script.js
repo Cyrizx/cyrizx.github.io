@@ -67,50 +67,53 @@ function generarPDF() {
         });
       });
 
-      Promise.all(promesasCarga).then(() => {
-        // Generar y subir PDF
-        html2pdf()
-          .set({
-            margin: 0,
-            filename: 'evaluacion.pdf',
-            html2canvas: { scale: 3, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        // Generar y subir PDF.
+     Promise.all(promesasCarga).then(() => {
+  // Esperar 200ms para asegurar que las imágenes estén rasterizadas
+  setTimeout(() => {
+    html2pdf()
+      .set({
+        margin: 0,
+        filename: 'evaluacion.pdf',
+        html2canvas: { scale: 3, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      })
+      .from(pdfContent)
+      .outputPdf('blob')
+      .then(blob => {
+        const formData = new FormData();
+        formData.append("file", blob, "evaluacion.pdf");
+
+        fetch("https://store1.gofile.io/uploadFile", {
+          method: "POST",
+          body: formData
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === "ok") {
+              const link = document.createElement('a');
+              link.href = data.data.downloadPage;
+              link.textContent = "📄 Descargar PDF generado";
+              link.target = "_blank";
+              link.className = "btn btn-outline-primary mt-3";
+
+              pdfPlaceholder.innerHTML = '';
+              pdfPlaceholder.appendChild(link);
+            } else {
+              alert("Error al subir a GoFile.");
+              console.error(data);
+            }
+            pdfContent.remove();
           })
-          .from(pdfContent)
-          .outputPdf('blob')
-          .then(blob => {
-            const formData = new FormData();
-            formData.append("file", blob, "evaluacion.pdf");
-
-            fetch("https://store1.gofile.io/uploadFile", {
-              method: "POST",
-              body: formData
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.status === "ok") {
-                  const link = document.createElement('a');
-                  link.href = data.data.downloadPage;
-                  link.textContent = "📄 Descargar PDF generado";
-                  link.target = "_blank";
-                  link.className = "btn btn-outline-primary mt-3";
-
-                  pdfPlaceholder.innerHTML = '';
-                  pdfPlaceholder.appendChild(link);
-                } else {
-                  alert("Error al subir a GoFile.");
-                  console.error(data);
-                }
-                pdfContent.remove();
-              })
-              .catch(err => {
-                alert("No se pudo conectar a GoFile.io");
-                console.error(err);
-                pdfContent.remove();
-              });
+          .catch(err => {
+            alert("No se pudo conectar a GoFile.io");
+            console.error(err);
+            pdfContent.remove();
           });
       });
+  }, 900); // <- este tiempo puede ajustarse si hace falta
+});
     })
     .catch(err => {
       console.error("Error al cargar template.html:", err);
