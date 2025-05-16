@@ -75,29 +75,26 @@ function generarPDF() {
         { inputId: 'input-humc1', imgId: 'input-humc1' },
         { inputId: 'input-humc2', imgId: 'input-humc2' }
 
-        // Podés agregar más si les das IDs únicos en el index
       ];
 
-      const promesasCarga = campos.map(({ inputId, imgId }) => {
-        const input = document.getElementById(inputId);
-        const img = pdfContent.querySelector(`#${imgId}`);
+const promesasCarga = campos.map(({ inputId, imgId }) => {
+  const input = document.getElementById(inputId);
+  const img = pdfContent.querySelector(`#${imgId}`);
 
-        return new Promise(resolve => {
-          if (input && input.files.length > 0 && img) {
-            const reader = new FileReader();
-            reader.onload = e => {
-              img.src = e.target.result;
-              resolve();
-            };
-            reader.readAsDataURL(input.files[0]);
-          } else if (img) {
-            img.remove();
-            resolve();
-          } else {
-            resolve();
-          }
-        });
-      });
+  return new Promise(resolve => {
+    if (input && input.files.length > 0 && img) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        img.src = e.target.result;
+        resolve();
+      };
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      // ✅ No tocamos la imagen si no se cargó nada
+      resolve();
+    }
+  });
+});
 
       Promise.all(promesasCarga).then(() => {
         const pages = pdfContent.querySelectorAll('.pdf-page');
