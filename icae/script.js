@@ -40,10 +40,32 @@ function generarPDF() {
       pdfPlaceholder.appendChild(wrapper);
 
       const campos = [
+        // 1.	Equipo de Emergencia 
         { inputId: 'input-eme1', imgId: 'img-eme1' },
         { inputId: 'input-eme2', imgId: 'img-eme2' },
+        
+        // 2. Primeros Auxilios
         { inputId: 'input-prm1', imgId: 'img-prm1' },
-        { inputId: 'input-prm2', imgId: 'img-prm2' }
+        { inputId: 'input-prm2', imgId: 'img-prm2' },
+
+        // 3.	Mercancías Peligrosas 
+        { inputId: 'input-mep1', imgId: 'img-mep1' },
+        { inputId: 'input-mep2', imgId: 'img-mep2' },
+
+        // 4.	Despresurizacion de cabina
+        { inputId: 'input-desc1', imgId: 'img-desc1' },
+        { inputId: 'input-desc2', imgId: 'img-desc2' },
+
+        // 5.	Emergencia no planeada
+        { inputId: 'input-emep1', imgId: 'img-emep1' },
+        { inputId: 'input-emep2', imgId: 'img-emep2' },
+        // 6.	Emergencia planeada 
+        { inputId: 'input-emepp1', imgId: 'img-emepp1' },
+        { inputId: 'input-emepp2', imgId: 'img-emepp2' },
+        // 7.	Humo en cabina 
+        { inputId: 'input-humc1', imgId: 'input-humc1' },
+        { inputId: 'input-humc2', imgId: 'input-humc2' }
+
         // Podés agregar más si les das IDs únicos en el index
       ];
 
@@ -76,7 +98,7 @@ function generarPDF() {
 
         const renderPage = (index) => {
           if (index >= pages.length) {
-            const blob = pdf.output('blob'); // ⬅️ CORREGIDO: ya no usa .then
+            const blob = pdf.output('blob');
 
             const formData = new FormData();
             formData.append("file", blob, "evaluacion.pdf");
