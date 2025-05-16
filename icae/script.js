@@ -71,6 +71,8 @@ function generarPDF() {
      Promise.all(promesasCarga).then(() => {
   // Esperar 200ms para asegurar que las imágenes estén rasterizadas
   setTimeout(() => {
+  document.body.offsetHeight;
+  window.scrollTo(0, 0);
     html2pdf()
       .set({
         margin: 0,
