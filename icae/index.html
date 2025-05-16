@@ -105,7 +105,11 @@
     <button id="btn-generar" class="btn btn-success mt-4">Generar PDF</button>
 
     <!-- Acá aparecerá el enlace para ver/descargar -->
-    <div id="pdf-placeholder" class="mt-4"></div>
+    <div id="pdf-placeholder">
+      <div id="pdf-render" style="position: absolute; top: -9999px; left: -9999px;"></div>
+      <div id="pdf-link-container" class="mt-4"></div>
+    </div>
+    
   </div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

@@ -42,7 +42,10 @@ function generarPDF() {
       const wrapper = document.createElement('div');
       wrapper.style.cssText = 'padding:0;margin:0;';
       wrapper.appendChild(pdfContent);
-      pdfPlaceholder.appendChild(wrapper);
+
+      const renderDiv = document.getElementById('pdf-render');
+      renderDiv.innerHTML = '';
+      renderDiv.appendChild(wrapper);
 
       const campos = [
         // 1.	Equipo de Emergencia 
@@ -118,8 +121,8 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
                   link.textContent = "📄 Descargar PDF generado";
                   link.target = "_blank";
                   link.className = "btn btn-outline-primary mt-3";
-                  pdfPlaceholder.innerHTML = '';
-                  pdfPlaceholder.appendChild(link);
+                  document.getElementById('pdf-link-container').innerHTML = '';
+                  document.getElementById('pdf-link-container').appendChild(link);
                 } else {
                   alert("Error al subir a GoFile.");
                   console.error(data);
