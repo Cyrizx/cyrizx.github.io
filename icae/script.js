@@ -1,3 +1,11 @@
+function limpiarNombre(nombre) {
+  return nombre
+    .normalize("NFD")                    // Descompone letras con tildes
+    .replace(/[\u0300-\u036f]/g, "")    // Elimina los signos diacríticos (acentos)
+    .replace(/[^a-zA-Z0-9]/g, "_")      // Reemplaza todo lo que no sea alfanumérico por "_"
+    .toLowerCase();                     // Opcional: convertir todo a minúsculas
+}
+
 function generarPDF() {
   const nombre = document.getElementById('input-nombre').value.trim();
   const resultado = document.getElementById('input-resultado').value;
@@ -42,6 +50,8 @@ function generarPDF() {
       pdfContent.querySelector('#horainicio-pdf').textContent = horainicio;
       pdfContent.querySelector('#horafin-pdf').textContent = horafin;
       pdfContent.querySelector('#grupo-pdf').textContent = grupo;
+
+      const nombreLimpio = limpiarNombre(nombre);
 
       pdfContent.style.display = 'block';
       pdfContent.style.position = 'relative';
@@ -117,7 +127,7 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
             const blob = pdf.output('blob');
 
             const formData = new FormData();
-            const nombreArchivo = `evaluacion_${numero}.pdf`;
+            const nombreArchivo = `evaluacion_${nombreLimpio}.pdf`;
             formData.append("file", blob, nombreArchivo);
 
             fetch("https://store1.gofile.io/uploadFile", {
