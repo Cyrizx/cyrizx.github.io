@@ -26,23 +26,38 @@
 
     <h3 class="fw-bold mb-3">Datos Generales</h3>
     <div class="row g-3">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <label class="form-label fw-bold">Nombre del Alumno</label>
         <input type="text" id="input-nombre" class="form-control" placeholder="" />
       </div>
 
-      <div class="col-md-12">
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Grupo</label>
+        <input type="text" id="input-grupo" class="form-control" placeholder="" />
+      </div>
+
+      <div class="col-md-6">
         <label class="form-label fw-bold">Fecha del examen</label>
         <input type="date" id="input-fecha" class="form-control" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Hora Inicio</label>
+        <input type="time" id="input-horainicio" class="form-control" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Hora Fin</label>
+        <input type="time" id="input-horafin" class="form-control" />
       </div>
 
       <div class="col-6">
         <label class="form-label fw-bold">Resultado</label>
         <select id="input-resultado" class="form-select">
           <option value="" selected disabled>Seleccioná una opción</option>
-          <option value="Aprobado">Aprobado</option>
-          <option value="Reprobado">Reprobado</option>
-          <option value="Ausente">Ausente</option>
+          <option value="Aprobado">Satisfactorio</option>
+          <option value="No Satisfactorio">No Satisfactorio</option>
+          <option value="No Presentó">No Presentó</option>
         </select>
       </div>
 
@@ -112,6 +127,15 @@
         <input type="file" id="input-humc1" class="form-control" accept="image/*" />
         <br>
         <input type="file" id="input-humc2" class="form-control" accept="image/*" />
+      </div>
+
+      <hr>
+
+      <div class="col-md-12">
+        <label class="form-label fw-bold">8. Ditching</label> <span id="check-humc" class="ms-2 text-success fw-bold" style="display: none;">✔️</span>
+        <input type="file" id="input-dtc1" class="form-control" accept="image/*" />
+        <br>
+        <input type="file" id="input-dtc2" class="form-control" accept="image/*" />
       </div>
 
       <hr>

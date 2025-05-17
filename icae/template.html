@@ -1,341 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        /* Estilos específicos para el PDF */
-        @page {
-            size: A4;
-            margin: 0;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #pdf-content {
-            width: 210mm;
-            min-height: 296mm; 
-            margin: 0;
-            padding: 0;
-            background: white;
-            font-family: Arial, sans-serif;
-            position: relative;
-            overflow:hidden;  
-            left: 0;
-        }
-        
-    </style>
-</head>
-<body>
-<div id="pdf-content" style="display: none;">
-
-  <!-- PRIMERA PÁGINA -->
-   <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
-  <div style="width: 210mm;">
-    <!-- Logo superpuesto -->
-    <img src="logo1.png" alt="Logo ICAE" style="
-      position: absolute;
-      top: 5px;
-      left: 45%;
-      transform: translateX(-50%);
-      max-height: 153px;
-      z-index: 10;
-    ">
-
-    <!-- Fondo azul -->
-    <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-      <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-      <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-      <p class="mb-0">Tel. (01) 311-133-32-22</p>
-    </div>
-
-    <!-- Contenido de la carta con margen adecuado -->
-    <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
-      <p class="text-end">Tepic, Nayarit a <span id="fecha-pdf"></span>.</p>
-
-      <p class="fw-bold mb-4">DIRECTOR DE CERTIFICACIÓN DE LICENCIAS<br>
-        AGENCIA FEDERAL DE AVIACIÓN CIVIL<br>
-        PRESENTE.
-      </p>
-
-      <p class="text-end"><strong>ASUNTO:</strong> REPORTE DE EVALUACIÓN</p>
-
-      <p>Por medio de la presente me dirijo a Usted enviándole un cordial saludo, y a su vez me permito presentarle la documentación que ampara el examen práctico realizado el día <strong>14 de mayo del 2025</strong> a las 09:20 horas a 20:00 horas en nuestras instalaciones. Con número de control <strong><span id="numero-texto" class="text-danger" >7088</span></strong>.</p>
-
-      <p>Se contó con la presencia del Examinador Designado a <strong><span id="nombre-texto"></span></strong>, y a la presencia de nuestra instructora <strong>C. Zeidy Salas Pérez</strong> como representante del grupo denominado <strong>SA/DGO/017/2024</strong>.</p>
-
-      <p>A su vez informarle de los resultados que obtuvieron los participantes:</p>
-
-      <!-- Tabla -->
-      <div class="my-4">
-        <table class="table table-bordered text-center">
-          <thead class="table-light">
-            <tr>
-              <th>NOMBRE DEL PARTICIPANTE</th>
-              <th>RESULTADO</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="nombre-participante"></td>
-              <td id="resultado-pdf"></td>
-            </tr>
-          </tbody>
-        </table>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <title>Document</title>
+      <style>
+         /* Estilos específicos para el PDF */
+         @page {
+         size: A4;
+         margin: 0;
+         }
+         body {
+         margin: 0;
+         padding: 0;
+         }
+         #pdf-content {
+         width: 210mm;
+         min-height: 296mm; 
+         margin: 0;
+         padding: 0;
+         background: white;
+         font-family: Arial, sans-serif;
+         position: relative;
+         overflow:hidden;  
+         left: 0;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="pdf-content" style="display: none;">
+      <!-- PRIMERA PÁGINA -->
+      <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
+         <div style="width: 210mm;">
+            <!-- Logo superpuesto -->
+            <img src="logo1.png" alt="Logo ICAE" style="
+               position: absolute;
+               top: 5px;
+               left: 45%;
+               transform: translateX(-50%);
+               max-height: 153px;
+               z-index: 10;
+               ">
+            <!-- Fondo azul -->
+            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
+               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
+               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
+               <p class="mb-0">Tel. (01) 311-133-32-22</p>
+            </div>
+            <!-- Contenido de la carta con margen adecuado -->
+            <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
+               <p class="text-end">Tepic, Nayarit a <span id="fecha-pdf"></span>.</p>
+               <p class="fw-bold mb-4">DIRECTOR DE CERTIFICACIÓN DE LICENCIAS<br>
+                  AGENCIA FEDERAL DE AVIACIÓN CIVIL<br>
+                  PRESENTE.
+               </p>
+               <p class="text-end"><strong>ASUNTO:</strong> REPORTE DE EVALUACIÓN</p>
+               <p>Por medio de la presente me dirijo a Usted enviándole un cordial saludo, y a su vez me permito presentarle la documentación que ampara el examen práctico realizado el día <strong>14 de mayo del 2025</strong> a las <span id="horainicio-pdf"></span> horas a <span id="horafin-pdf"></span> horas en nuestras instalaciones. Con número de control <strong><span id="numero-texto" class="text-danger" >7088</span></strong>.</p>
+               <p>Se contó con la presencia del Examinador Designado a <strong>C. Candy Nayeli Vargas Carrasco</span></strong>, y a la presencia de nuestra instructora <strong>C. Zeidy Salas Pérez</strong> como representante del grupo denominado <strong><span id="grupo-pdf"></span></strong>.</p>
+               <p>A su vez informarle de los resultados que obtuvieron los participantes:</p>
+               <!-- Tabla -->
+               <div class="my-4">
+                  <table class="table table-bordered text-center">
+                     <thead class="table-light">
+                        <tr>
+                           <th>NOMBRE DEL PARTICIPANTE</th>
+                           <th>RESULTADO</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td id="nombre-participante"></td>
+                           <td id="resultado-pdf"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p>Anexo 1 hoja de exámenes de cada participante, permiso de centro evaluador y permiso de examinador designado.</p>
+               <p>Sin más por el momento y agradeciendo de antemano su apoyo, quedo de usted.</p>
+               <p>Atentamente</p>
+               <!-- Firma -->
+               <div class="text-center mt-5">
+                  <p class="mt-4">____________________________________</p>
+                  <p>Cap. P.A. Alfonso Guillermo Aguayo<br>Director General</p>
+               </div>
+            </div>
+            <div style="height: 160px;"></div>
+            <!-- Pie de color -->
+            <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
+            <div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
+         </div>
       </div>
-
-      <p>Anexo 1 hoja de exámenes de cada participante, permiso de centro evaluador y permiso de examinador designado.</p>
-
-      <p>Sin más por el momento y agradeciendo de antemano su apoyo, quedo de usted.</p>
-
-      <p>Atentamente</p>
-
-      <!-- Firma -->
-      <div class="text-center mt-5">
-        <p class="mt-4">____________________________________</p>
-        <p>Cap. P.A. Alfonso Guillermo Aguayo<br>Director General</p>
+      <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
+         <!-- SEGUNDA PÁGINA -->
+         <div style="width: 210mm; min-height: 297mm; page-break-after: always;">
+            <!-- Logo superpuesto -->
+            <img src="logo1.png" alt="Logo ICAE" style="
+               position: absolute;
+               top: 1131px;
+               left: 45%;
+               transform: translateX(-50%);
+               max-height: 153px;
+               z-index: 10;
+               ">
+            <!-- Fondo azul superior -->
+            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
+               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
+               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
+               <p class="mb-0">Tel. (01) 311-133-32-22</p>
+            </div>
+            <!-- Contenido adicional -->
+            <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
+               <div class="mb-3 pt-5">
+                  <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina2"></span></p>
+                  <p><strong>Número rojo:</strong> <span id="numero-pagina2"></span></p>
+               </div>
+               <div class="container text-center">
+                  <div class="row" style="margin-bottom: 94px;">
+                     <div class="col m-0 p-0">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="img-eme1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Equipo de Emergencia</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-eme2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Equipo de Emergencia</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-prm1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Primeros Auxilios</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-prm2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Primeros Auxilios</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-mep1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Mercancías Peligrosas </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-mep2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Mercancías Peligrosas</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-desc1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text text-center" style="font-size: 12px;">Despresurización de cabina</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-desc2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text text-center" style="font-size: 12px;">Despresurización de cabina</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-emep1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Emergencia no planeada</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col m-0 p-0">
+                        <div class="card " style="width: 140px; max-height: 286px;">
+                           <img id="img-emep2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center ">Emergencia no planeada</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="height: 254px;"></div>
+            </div>
+            <!-- Pie de página -->
+            <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
+            <div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
+         </div>
       </div>
-    </div>
-<div style="height: 160px;"></div>
-    <!-- Pie de color -->
-    <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
-    <div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
-  </div>
-</div>
-
-   <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
-  <!-- SEGUNDA PÁGINA -->
-<div style="width: 210mm; min-height: 297mm; page-break-after: always;">
-      <!-- Logo superpuesto -->
-    <img src="logo1.png" alt="Logo ICAE" style="
-      position: absolute;
-      top: 1131px;
-      left: 45%;
-      transform: translateX(-50%);
-      max-height: 153px;
-      z-index: 10;
-    ">
-  <!-- Fondo azul superior -->
-  <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-    <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-    <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-    <p class="mb-0">Tel. (01) 311-133-32-22</p>
-  </div>
-
-  <!-- Contenido adicional -->
-  <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
-
-    <div class="mb-3 pt-5">
-      <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina2"></span></p>
-      <p><strong>Número rojo:</strong> <span id="numero-pagina2"></span></p>
-    </div>
-
-    
-<div class="container text-center">
-  <div class="row" style="margin-bottom: 94px;">
-    <div class="col m-0 p-0">
-
-      <div class="card" style="width: 140px; max-height: 286px;">
-
-        <img id="img-eme1" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Equipo de Emergencia</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-eme2" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Equipo de Emergencia</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-prm1" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Primeros Auxilios</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-prm2" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Primeros Auxilios</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-mep1" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Mercancías Peligrosas </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-mep2" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Mercancías Peligrosas</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-desc1" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text text-center" style="font-size: 12px;">Despresurización de cabina</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-desc2" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text text-center" style="font-size: 12px;">Despresurización de cabina</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-emep1" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Emergencia no planeada</p>
-        </div>
-      </div>
-    </div>
-    <div class="col m-0 p-0">
-      <div class="card " style="width: 140px; max-height: 286px;">
-
-        <img id="img-emep2" src="img1.png" class="card-img-top" alt="...">
-        <div class="card-body text-white" style="background-color: #0c729b;">
-          <p class="card-text fs-6 text-center ">Emergencia no planeada</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div style="height: 254px;"></div>
-
-
-   
-  </div>
-
-  <!-- Pie de página -->
-<div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
-<div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
-</div>
-</div>
-
-   <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
-  <!-- TERCERA PÁGINA -->
-<div style="width: 210mm; min-height: 297mm; page-break-after: always;">
-      <!-- Logo superpuesto -->
-    <img src="logo1.png" alt="Logo ICAE" style="
-      position: absolute;
-      top: 2372px;
-      left: 45%;
-      transform: translateX(-50%);
-      max-height: 153px;
-      z-index: 10;
-    ">
-  <!-- Fondo azul superior -->
-  <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-    <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-    <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-    <p class="mb-0">Tel. (01) 311-133-32-22</p>
-  </div>
-
-  <!-- Contenido adicional -->
-<div style="margin-top: 40px; padding: 0 15px; width: 100%; display: flex; flex-direction: column; justify-content: center; min-height: 80%;">
-
-
-    <div class="mb-3 pt-5">
-      <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina3"></span></p>
-      <p><strong>Número rojo:</strong> <span id="numero-pagina3"></span></p>
-    </div>
-
-    
-
-<div class="container text-center">
-  <div class="row">
-    <div class="col m-0 p-0 mb-4">
-     
-<div class="card " style="width: 140px; max-height: 286px;">
-
-      <img id="img-emepp1" src="img1.png" class="card-img-top" alt="...">
-      <div class="card-body text-white" style="background-color: #0c729b;">
-        <p class="card-text fs-6 text-center ">Emergencia planeada</p>
-      </div>
-    </div>
-    </div>
-    <div class="col m-0 p-0">
-      
-<div class="card " style="width: 140px; max-height: 286px;">
-
-      <img id="img-emepp2" src="img1.png" class="card-img-top" alt="...">
-            <div class="card-body text-white" style="background-color: #0c729b;">
-        <p class="card-text fs-6 text-center ">Emergencia planeada</p>
+      <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
+         <!-- TERCERA PÁGINA -->
+         <div style="width: 210mm; min-height: 297mm; page-break-after: always;">
+            <!-- Logo superpuesto -->
+            <img src="logo1.png" alt="Logo ICAE" style="
+               position: absolute;
+               top: 2372px;
+               left: 45%;
+               transform: translateX(-50%);
+               max-height: 153px;
+               z-index: 10;
+               ">
+            <!-- Fondo azul superior -->
+            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
+               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
+               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
+               <p class="mb-0">Tel. (01) 311-133-32-22</p>
+            </div>
+            <!-- Contenido adicional -->
+            <div style="margin-top: 40px; padding: 0 15px; width: 100%; display: flex; flex-direction: column; justify-content: center; min-height: 80%;">
+               <div class="mb-3 pt-5">
+                  <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina3"></span></p>
+                  <p><strong>Número rojo:</strong> <span id="numero-pagina3"></span></p>
+               </div>
+               <div class="container text-center">
+                  <!-- Primera fila: 4 cards -->
+                  <div class="row">
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="img-emepp1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Emergencia planeada</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="img-emepp2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Emergencia planeada</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="input-humc1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Humo en cabina</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="input-humc2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Humo en cabina</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Segunda fila: 2 cards -->
+                  <div class="row mt-3">
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="img-dtc1" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Ditching</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-3 m-0 p-0 mb-4">
+                        <div class="card" style="width: 140px; max-height: 286px;">
+                           <img id="img-dtc2" src="img1.png" class="card-img-top" alt="...">
+                           <div class="card-body text-white" style="background-color: #0c729b;">
+                              <p class="card-text fs-6 text-center">Ditching</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="height: 180px;"></div>
+               <!-- Pie de página -->
+            </div>
+            <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
+            <div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
+         </div>
       </div>
     </div>
-    </div>
-    <div class="col m-0 p-0">
-
-<div class="card " style="width: 140px; max-height: 286px;">
-
-      <img id="input-humc1" src="img1.png" class="card-img-top" alt="...">
-            <div class="card-body text-white" style="background-color: #0c729b;">
-        <p class="card-text fs-6 text-center ">Humo en cabina</p>
-      </div>
-    </div>
-    </div>
-    <div class="col m-0 p-0">
-
-<div class="card " style="width: 140px; max-height: 286px;">
-
-      <img id="input-humc2" src="img1.png" class="card-img-top" alt="...">
-            <div class="card-body text-white" style="background-color: #0c729b;">
-        <p class="card-text fs-6 text-center ">Humo en cabina</p>
-      </div>
-    </div>
-    </div>
-
-
-  </div>
-</div>
-   
-  </div>
-<div style="height: 502px;"></div>
-  <!-- Pie de página -->
-<div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
-<div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
-</div>
-</div>
-
-</div>
-</body>
+   </body>
 </html>

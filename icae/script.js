@@ -3,6 +3,9 @@ function generarPDF() {
   const resultado = document.getElementById('input-resultado').value;
   const numero = document.getElementById('input-numero').value.trim();
   const fechaInput = document.getElementById('input-fecha').value;
+  const horainicio = document.getElementById('input-horainicio').value;
+  const horafin = document.getElementById('input-horafin').value;
+  const grupo = document.getElementById('input-grupo').value;
 
   if (!nombre || !resultado || !numero || !fechaInput) {
     alert("Completá todos los campos antes de generar el PDF.");
@@ -25,7 +28,6 @@ function generarPDF() {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const pdfContent = doc.querySelector('#pdf-content');
 
-      pdfContent.querySelector('#nombre-texto').textContent = nombre;
       pdfContent.querySelector('#nombre-participante').textContent = nombre.toUpperCase();
       pdfContent.querySelector('#nombre-pagina2').textContent = nombre;
       pdfContent.querySelector('#nombre-pagina3').textContent = nombre;
@@ -36,6 +38,10 @@ function generarPDF() {
 
       pdfContent.querySelector('#resultado-pdf').textContent = resultado;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
+
+      pdfContent.querySelector('#horainicio-pdf').textContent = horainicio;
+      pdfContent.querySelector('#horafin-pdf').textContent = horafin;
+      pdfContent.querySelector('#grupo-pdf').textContent = grupo;
 
       pdfContent.style.display = 'block';
       pdfContent.style.position = 'relative';
@@ -74,7 +80,10 @@ function generarPDF() {
         { inputId: 'input-emepp2', imgId: 'img-emepp2' },
         // 7.	Humo en cabina 
         { inputId: 'input-humc1', imgId: 'input-humc1' },
-        { inputId: 'input-humc2', imgId: 'input-humc2' }
+        { inputId: 'input-humc2', imgId: 'input-humc2' },
+        // 8.	Ditching
+        { inputId: 'input-dtc1', imgId: 'img-dtc1' },
+        { inputId: 'input-dtc2', imgId: 'img-dtc2' }
 
       ];
 
@@ -121,7 +130,6 @@ const promesasCarga = campos.map(({ inputId, imgId }) => {
                   const link = document.createElement('a');
                   link.href = data.data.downloadPage;
                   link.textContent = `📄 Descargar Evaluacion de ${nombre} `;
-                  link.target = "_blank";
                   link.className = "btn btn-outline-primary";
                   document.getElementById('pdf-link-container').innerHTML = '';
                   document.getElementById('pdf-link-container').appendChild(link);
