@@ -51,6 +51,16 @@ function generarPDF() {
       pdfContent.querySelector('#horafin-pdf').textContent = horafin;
       pdfContent.querySelector('#grupo-pdf').textContent = grupo;
 
+      // ✅ APLICAR EL FILTRO DE PÁGINAS AQUÍ ANTES DE CONTINUAR
+      const switchSoloPrimera = document.getElementById("switchSoloPrimera");
+      if (switchSoloPrimera?.checked) {
+        const paginas = pdfContent.querySelectorAll(".pdf-page");
+        // Eliminar todas las páginas excepto la primera
+        for (let i = paginas.length - 1; i >= 1; i--) {
+          paginas[i].remove();
+        }
+      }
+
       const nombreLimpio = limpiarNombre(nombre);
 
       pdfContent.style.display = 'block';
@@ -94,27 +104,26 @@ function generarPDF() {
         // 8.	Ditching
         { inputId: 'input-dtc1', imgId: 'img-dtc1' },
         { inputId: 'input-dtc2', imgId: 'img-dtc2' }
-
       ];
 
-const promesasCarga = campos.map(({ inputId, imgId }) => {
-  const input = document.getElementById(inputId);
-  const img = pdfContent.querySelector(`#${imgId}`);
+      const promesasCarga = campos.map(({ inputId, imgId }) => {
+        const input = document.getElementById(inputId);
+        const img = pdfContent.querySelector(`#${imgId}`);
 
-  return new Promise(resolve => {
-    if (input && input.files.length > 0 && img) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        img.src = e.target.result;
-        resolve();
-      };
-      reader.readAsDataURL(input.files[0]);
-    } else {
-      // ✅ No tocamos la imagen si no se cargó nada
-      resolve();
-    }
-  });
-});
+        return new Promise(resolve => {
+          if (input && input.files.length > 0 && img) {
+            const reader = new FileReader();
+            reader.onload = e => {
+              img.src = e.target.result;
+              resolve();
+            };
+            reader.readAsDataURL(input.files[0]);
+          } else {
+            // ✅ No tocamos la imagen si no se cargó nada
+            resolve();
+          }
+        });
+      });
 
       Promise.all(promesasCarga).then(() => {
         const pages = pdfContent.querySelectorAll('.pdf-page');
