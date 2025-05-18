@@ -31,25 +31,12 @@
    <body>
       <div id="pdf-content" style="display: none;">
       <!-- PRIMERA PÁGINA -->
-      <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
+      <div class="pdf-page" style="width: 210mm; min-height: 297mm;" >
          <div style="width: 210mm;">
             <!-- Logo superpuesto -->
-            <img src="logo1.png" alt="Logo ICAE" style="
-               position: absolute;
-               top: 5px;
-               left: 45%;
-               transform: translateX(-50%);
-               max-height: 153px;
-               z-index: 10;
-               ">
-            <!-- Fondo azul -->
-            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-               <p class="mb-0">Tel. (01) 311-133-32-22</p>
-            </div>
+            <img src="header.png" width="100%">
             <!-- Contenido de la carta con margen adecuado -->
-            <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
+            <div style="margin-top: 10px; padding: 0 15px; width: 100%;">
                <p class="text-end">Tepic, Nayarit a <span id="fecha-pdf"></span>.</p>
                <p class="fw-bold mb-4">DIRECTOR DE CERTIFICACIÓN DE LICENCIAS<br>
                   AGENCIA FEDERAL DE AVIACIÓN CIVIL<br>
@@ -85,7 +72,7 @@
                   <p>Cap. P.A. Alfonso Guillermo Aguayo<br>Director General</p>
                </div>
             </div>
-            <div style="height: 160px;"></div>
+            <div style="height: 122px;"></div>
             <!-- Pie de color -->
             <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
             <div style="background-color: rgb(12, 114, 155); height: 40px; width: 100%;"></div>
@@ -95,23 +82,10 @@
          <!-- SEGUNDA PÁGINA -->
          <div style="width: 210mm; min-height: 297mm; page-break-after: always;">
             <!-- Logo superpuesto -->
-            <img src="logo1.png" alt="Logo ICAE" style="
-               position: absolute;
-               top: 1131px;
-               left: 45%;
-               transform: translateX(-50%);
-               max-height: 153px;
-               z-index: 10;
-               ">
-            <!-- Fondo azul superior -->
-            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-               <p class="mb-0">Tel. (01) 311-133-32-22</p>
-            </div>
+            <img src="header.png" width="100%">
             <!-- Contenido adicional -->
             <div style="margin-top: 40px; padding: 0 15px; width: 100%;">
-               <div class="mb-3 pt-5">
+               <div class="mb-3 pt-2">
                   <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina2"></span></p>
                   <p><strong>Número rojo:</strong> <span id="numero-pagina2"></span></p>
                </div>
@@ -201,7 +175,7 @@
                      </div>
                   </div>
                </div>
-               <div style="height: 254px;"></div>
+               <div style="height: 115px;"></div>
             </div>
             <!-- Pie de página -->
             <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
@@ -210,25 +184,12 @@
       </div>
       <div class="pdf-page" style="width: 210mm; min-height: 297mm;">
          <!-- TERCERA PÁGINA -->
-         <div style="width: 210mm; min-height: 297mm; page-break-after: always;">
+         <div style="width: 210mm; max-height: 297mm; page-break-after: always;">
             <!-- Logo superpuesto -->
-            <img src="logo1.png" alt="Logo ICAE" style="
-               position: absolute;
-               top: 2372px;
-               left: 45%;
-               transform: translateX(-50%);
-               max-height: 153px;
-               z-index: 10;
-               ">
-            <!-- Fondo azul superior -->
-            <div class="text-white text-end px-4 py-4" style="background-color: rgb(12, 114, 155); font-size: 12px; width: 100%;">
-               <p class="mb-0">Av. Independencia # 37, Fracc. Simancas</p>
-               <p class="mb-0">Tepic, Nayarit. CP. 63177</p>
-               <p class="mb-0">Tel. (01) 311-133-32-22</p>
-            </div>
+            <img src="header.png" width="100%" alt="">
             <!-- Contenido adicional -->
             <div style="margin-top: 40px; padding: 0 15px; width: 100%; display: flex; flex-direction: column; justify-content: center; min-height: 80%;">
-               <div class="mb-3 pt-5">
+               <div class="mb-3 pt-1">
                   <p class="m-0 p-0"><strong>Nombre:</strong> <span id="nombre-pagina3"></span></p>
                   <p><strong>Número rojo:</strong> <span id="numero-pagina3"></span></p>
                </div>
@@ -288,7 +249,7 @@
                      </div>
                   </div>
                </div>
-               <div style="height: 180px;"></div>
+               <div style="height: 156px;"></div>
                <!-- Pie de página -->
             </div>
             <div style="background-color:#d3b466; height: 20px; width: 100%;"></div>
