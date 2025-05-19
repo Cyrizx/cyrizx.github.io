@@ -77,8 +77,10 @@ function generarPDF() {
         
         // Buscar y configurar instructor-pdf
         const instructorElement = pdfContent.querySelector('#instructor-pdf');
+        const instructnam = pdfContent.querySelector('#inst-pdf');
         if (instructorElement) {
           instructorElement.textContent = instructorSeleccionado;
+          instructnam.textContent = 'nuestro instructor '
         }
       }
       // Si el switch no está activado, los valores del template se mantienen como están
