@@ -68,9 +68,23 @@
         <label class="form-label fw-bold">Número de control</label>
         <input type="text" id="input-numero" class="form-control" placeholder="" />
       </div>
-      <hr>
+      
+      <div id="bloque-instructor" style="display: none;">
+        <div class="col-6">
+        <label class="form-label fw-bold">Instructor</label>
+        <select id="select-instructor" class="form-select">
+          <option value="" selected disabled>Seleccioná una opción</option>
+          <option value="Cap. Ricardo Escobar Sosa">Cap. Ricardo Escobar Sosa</option>
+          <option value="Cap. Jonas Nava Martínez">Cap. Jonas Nava Martínez</option>
+          <option value="Cap. Oscar Guillermo Aguayo Palazuelos">Cap. Oscar Guillermo Aguayo Palazuelos</option>
+        </select>
+        </div>
 
-      <div id="bloque-imagenes">
+
+      </div>
+    
+    <div id="bloque-imagenes">
+        <hr>
       <h3 class="fw-bold">Imágenes</h3>
 
       <div class="col-md-12">
@@ -142,11 +156,11 @@
         <input type="file" id="input-dtc2" class="form-control" accept="image/*" />
       </div>
 
-      <hr>
     </div>
-
-    </div>
-
+    
+  </div>
+  <hr>
+  
   <div class="d-flex align-items-center gap-2">
     <button id="btn-generar" class="btn btn-success">Generar PDF</button>
     <div id="pdf-loader" class="spinner-border text-success" role="status" style="display: none; width: 1.5rem; height: 1.5rem;">
@@ -185,12 +199,24 @@
 </script>
 
 <script>
-document.getElementById("switchSoloPrimera").addEventListener("change", function () {
-  const bloque = document.getElementById("bloque-imagenes");
-  if (bloque) {
-    bloque.style.display = this.checked ? "none" : "block";
-  }
-});
+  document.getElementById("switchSoloPrimera").addEventListener("change", function () {
+    const bloqueImagenes = document.getElementById("bloque-imagenes");
+    const bloqueInstructor = document.getElementById("bloque-instructor");
+
+    if (this.checked) {
+      bloqueImagenes.style.display = "none";
+      bloqueInstructor.style.display = "block";
+    } else {
+      bloqueImagenes.style.display = "block";
+      bloqueInstructor.style.display = "none";
+    }
+  });
+
+  // Estado inicial por si el switch arranca tildado
+  window.addEventListener("DOMContentLoaded", function () {
+    const switchControl = document.getElementById("switchSoloPrimera");
+    switchControl.dispatchEvent(new Event("change"));
+  });
 </script>
 </body>
 </html>

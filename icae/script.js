@@ -15,6 +15,19 @@ function generarPDF() {
   const horafin = document.getElementById('input-horafin').value;
   const grupo = document.getElementById('input-grupo').value;
 
+  // ✅ Verificar el estado del switch
+  const switchSoloPrimera = document.getElementById("switchSoloPrimera");
+  const esPiloto = switchSoloPrimera?.checked;
+
+  // ✅ Si es evaluación de piloto, validar que se haya seleccionado instructor
+  if (esPiloto) {
+    const instructorSeleccionado = document.getElementById('select-instructor').value;
+    if (!instructorSeleccionado) {
+      alert("Por favor, selecciona un instructor para la evaluación de piloto.");
+      return;
+    }
+  }
+
   if (!nombre || !resultado || !numero || !fechaInput) {
     alert("Completá todos los campos antes de generar el PDF.");
     return;
@@ -51,9 +64,27 @@ function generarPDF() {
       pdfContent.querySelector('#horafin-pdf').textContent = horafin;
       pdfContent.querySelector('#grupo-pdf').textContent = grupo;
 
+      // ✅ CONFIGURAR EXAMINADOR E INSTRUCTOR SEGÚN EL ESTADO DEL SWITCH
+      if (esPiloto) {
+        // Si el switch está activado (evaluación de piloto)
+        const instructorSeleccionado = document.getElementById('select-instructor').value;
+        
+        // Buscar y configurar examinador-pdf
+        const examinadorElement = pdfContent.querySelector('#examinador-pdf');
+        if (examinadorElement) {
+          examinadorElement.textContent = "Cap. P.A. Alfonso Guillermo Aguayo";
+        }
+        
+        // Buscar y configurar instructor-pdf
+        const instructorElement = pdfContent.querySelector('#instructor-pdf');
+        if (instructorElement) {
+          instructorElement.textContent = instructorSeleccionado;
+        }
+      }
+      // Si el switch no está activado, los valores del template se mantienen como están
+
       // ✅ APLICAR EL FILTRO DE PÁGINAS AQUÍ ANTES DE CONTINUAR
-      const switchSoloPrimera = document.getElementById("switchSoloPrimera");
-      if (switchSoloPrimera?.checked) {
+      if (esPiloto) {
         const paginas = pdfContent.querySelectorAll(".pdf-page");
         // Eliminar todas las páginas excepto la primera
         for (let i = paginas.length - 1; i >= 1; i--) {
