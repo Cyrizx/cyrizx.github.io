@@ -161,7 +161,7 @@ function generarPDF() {
       Promise.all(promesasCarga).then(() => {
         const pages = pdfContent.querySelectorAll('.pdf-page');
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDF('p', 'mm', [279.4, 215.9]);
         const options = { scale: 2, useCORS: true };
 
         const renderPage = (index) => {

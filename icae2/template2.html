@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFAC - Examen Práctico Piloto Privado</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            width: 210mm;
+            min-height: 275mm;
+            margin-top: 13px;
+            margin-right: 13px;
+            background: white;
+            border: 2px solid #000;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #000;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+        }
+        .logo {
+            width: 114px;
+            flex-shrink: 0;
+        }
+        .title-header {
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+            flex: 1;
+            text-align: center;
+            margin-right: 120px;
+        }
+        .subtitle {
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #000;
+            font-weight: 500;
+        }
+        .section-header {
+            background-color: #6c757d;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 14px;
+            border-bottom: 1px solid #000;
+        }
+        .form-row {
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+            position: relative;
+        }
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0;
+            color: #000;
+        }
+        .underline {
+            border-bottom: 1px solid #000;
+            flex: 1;
+            padding: 0px 5px;
+            margin-left: 2px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+        .underline.short {
+            flex: 0;
+            min-width: 150px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .underline.short1 {
+            flex: 0;
+            min-width: 168px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .underline.short2 {
+            flex: 0;
+            min-width: 260px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .underline.short3 {
+            flex: 0;
+            min-width: 360px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .form-row.centered {
+            justify-content: center;
+            text-align: center;
+        }
+        .form-row.centered .form-label {
+            margin-right: 5px;
+        }
+        .form-row.centered .underline {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .signature-section {
+            text-align: center;
+            padding: 30px 15px;
+            border-bottom: 1px solid #000;
+        }
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 300px;
+            margin: 20px auto;
+            height: 20px;
+        }
+        .observations {
+            padding: 15px;
+            min-height: 100px;
+        }
+        .observations-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .obs-line {
+            border-bottom: 1px solid #000;
+            height: 25px;
+            margin-bottom: 10px;
+        }
+        .footer-code {
+            text-align: right;
+            padding: 0 15px 10px 0;
+            font-size: 12px;
+            margin-right: 13px;
+            width: 210mm;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container m-0 p-0">
+        <div class="form-container">
+            <!-- Header -->
+            <div class="header">
+                <img src="logo fac.jpg" alt="Logo FAC" class="logo">
+                <div class="title-header">AGENCIA FEDERAL DE AVIACIÓN CIVIL</div>
+            </div>
+
+            <!-- Subtitle -->
+            <div class="subtitle">
+                Examen Práctico para Obtención, Convalidación o Recuperación de Licencia de Piloto Privado de Ala Fija.
+            </div>
+
+            <!-- Section A -->
+            <div class="section-header">
+                Sección A<br>Información General
+            </div>
+
+            <!-- Location and Date -->
+            <div class="form-row">
+                <span class="form-label">Tepic, Nayarit,</span>
+                <span class="underline">5 de noviembre de 2024</span>
+            </div>
+
+            <!-- Examiner -->
+            <div class="form-row">
+                <span class="form-label">Examen presentado por el C.</span>
+                <span class="underline">DAVID ALEJANDRO BUENO DORADOR</span>
+            </div>
+
+            <!-- License Type -->
+            <div class="form-row">
+                <span class="form-label">Para la Obtener la licencia como Piloto Privado de Ala Fija.</span>
+            </div>
+
+            <!-- Institution -->
+            <div class="form-row">
+                <span class="form-label">Institución Educativa:</span>
+                <span class="underline"><strong>INSTITUTO DE CAPACITACIÓN AÉREA ESPECIALIZADA</strong></span>
+            </div>
+
+            <!-- Permit Number -->
+            <div class="form-row">
+                <span class="form-label">con permiso Número</span>
+                <span class="underline short2">4.1.2.5.2-6412-2024 ESC. 3751</span>
+                <span class="form-label">Vigente hasta</span>
+                <span class="underline">22 DE DICIEMBRE DEL 2025</span>
+            </div>
+
+            <!-- Medical Exam -->
+            <div class="form-row">
+                <span class="form-label">Examen Médico, expediente núm.</span>
+                <span class="underline short1">2609</span>
+                <span class="form-label">Vigente hasta</span>
+                <span class="underline">12 DE DICIEMBRE DEL 2025</span>
+            </div>
+
+            <!-- Age and Address -->
+            <div class="form-row">
+                <span class="form-label">Edad</span>
+                <span class="underline short">20 AÑOS</span>
+                <span class="form-label">Domicilio</span>
+                <span class="underline">LUIS CASTILLO LEDON #44</span>
+            </div>
+
+            <!-- Colony -->
+            <div class="form-row">
+                <span class="form-label">Colonia</span>
+                <span class="underline">FRACC. ESTADIOS</span>
+            </div>
+
+            <!-- Municipality -->
+            <div class="form-row">
+                <span class="form-label">Alcaldía / Municipio</span>
+                <span class="underline">TEPIC</span>
+            </div>
+
+            <!-- City and State -->
+            <div class="form-row">
+                <span class="form-label">Ciudad</span>
+                <span class="underline short3">TEPIC</span>
+                <span class="form-label">Estado</span>
+                <span class="underline">NAYARIT</span>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="form-row">
+                <span class="form-label">E-mail</span>
+                <span class="underline short">icaesadecv@hotmail.com</span>
+                <span class="form-label" style="margin-left: 40px;">Teléfono</span>
+                <span class="underline">311 1333222</span>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="signature-section">
+                <div class="signature-line"></div>
+                <div class="form-label">Firma del Examinado</div>
+                <br><br>
+                <div style="font-size: 14px;">Entregar las tres hojas en la Dirección de Certificación de Licencias.</div>
+            </div>
+
+            <!-- Observations -->
+            <div class="observations">
+                <div class="observations-title">OBSERVACIONES:</div>
+                <div class="obs-line"></div>
+                <div class="obs-line"></div>
+                <div class="obs-line"></div>
+            </div>
+
+        </div>
+        <!-- Footer -->
+        <div class="footer-code">
+            F-DESA-DCLC-CIV EX-02
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

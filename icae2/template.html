@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Piloto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .border-box-in {
+      border-top: 2px;
+      border-bottom: 2px solid black;
+      border-left: 0;
+      border-right: 0;
+      border-style: solid;
+      border-color: black;
+      padding: 0;
+      margin: 0;
+    }
+
+    .border-box {
+      border: 2px solid black;
+      padding: 0;
+      margin: 0;
+    }
+
+    .title {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .gris {
+      background: #d3d3d3;
+    }
+
+    .logo {
+      max-width: 100px;
+    }
+
+    .encabezado {
+      display: flex;
+      gap: 20px;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .encabezado-texto {
+      flex: 1;
+    }
+
+    .firma {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .flex-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .input-line {
+      position: relative;
+      flex: 1;
+      border-bottom: 1px solid black;
+      min-height: 24px;
+      line-height: 24px;
+    }
+
+    .input-line span {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+  </style>
+</head>
+<body class="p-4">
+  <div class="container border-box p-0">
+        <div class="encabezado p-2">
+        <img src="logo fac.jpg" class="logo" alt="Logo" />
+            <div class="encabezado-texto">
+                <div class="title text-center">AGENCIA FEDERAL DE AVIACIÓN CIVIL</div>
+            </div>
+        </div>
+        <div class="text-center border-top border-black pt-2">
+        Examen Práctico para Obtención, Convalidación o Recuperación de Licencia de Piloto Privado de Ala Fija.
+        </div>
+
+        <div class="mb-3 border-box-in p-2 gris"><strong>Sección A</strong><br>Información General</div>
+        <div class="mx-2">
+                
+            <div class="flex-line">
+            <strong>Tepic, Nayarit a:</strong>
+            <span class="input-line"><span>{{FechaComp}}</span></span>
+            </div>
+
+            <div class="flex-line mt-4">
+            <span>Examen presentado por el C.</span>
+            <span class="input-line"><span>{{Nombre}}</span></span>
+            </div>
+
+            <p>Para la Obtener la licencia como Piloto Privado de Ala Fija.</p>
+
+            <div class="flex-line">
+            <span>Institución Educativa:</span>
+            <strong>INSTITUTO DE CAPACITACIÓN AÉREA ESPECIALIZADA</strong>
+            </div>
+
+            <div class="flex-line">
+            <span>con permiso Número 4.1.2.5.2-</span>
+            <span class="input-line"><span>{{NPer}}</span></span>
+            <span class="input-line"><span>ESCU. {{Escu}}</span></span>
+            <span> Vigente hasta</span>
+            <span class="input-line"><span>{{Vper}}</span></span>
+            </div>
+
+            <div class="flex-line">
+            <span>Examen Médico, expediente núm.</span>
+            <span class="input-line"><span>{{EXPEDIENTE}}</span></span>
+            <span>Vigente hasta</span>
+            <span class="input-line"><span>{{Vhas}}</span></span>
+            </div>
+
+            <div class="flex-line">
+            <span>Edad</span>
+            <span class="input-line"><span>{{Edad}}</span></span>
+            <span>Domicilio</span>
+            <span class="input-line"><span>{{Domicilio}}</span></span>
+            </div>
+
+            <div class="flex-line">
+            <span>Colonia</span>
+            <span class="input-line"><span>{{Colonia}}</span></span>
+            <span>Alcaldía / Municipio</span>
+            <span class="input-line"><span>{{Municipio}}</span></span>
+            </div>
+
+            <div class="flex-line">
+            <span>Ciudad</span>
+            <span class="input-line"><span>{{Ciudad}}</span></span>
+            <span>Estado</span>
+            <span class="input-line"><span>{{Estado}}</span></span>
+            </div>
+
+            <div class="flex-line">
+            <span>E-mail</span>
+            <span>icasaedcv@hotmail.com</span>
+            <span>Teléfono</span>
+            <span class="input-line"><span>311 3332222</span></span>
+            </div>
+
+            <div class="firma">
+            <p>__________________________________________</p>
+            <p>Firma del Examindo</p>
+            </div>
+
+            <div class="text-center">
+            <p>Entregar las tres hojas en la Dirección de Certificación de Licencias.</p>
+            </div>
+
+            <div class="mb-2">OBSERVACIONES:</div>
+            <span class="input-line" style="width:100%"><span>&nbsp;</span></span><br>
+            <span class="input-line" style="width:100%"><span>&nbsp;</span></span>
+        </div>
+  </div>
+</body>
+</html>
