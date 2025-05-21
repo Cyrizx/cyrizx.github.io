@@ -59,6 +59,7 @@ function generarPDF() {
 
       pdfContent.querySelector('#resultado-pdf').textContent = resultado;
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
+      pdfContent.querySelector('#fecha-tit').textContent = fechaFormateada;
 
       pdfContent.querySelector('#horainicio-pdf').textContent = horainicio;
       pdfContent.querySelector('#horafin-pdf').textContent = horafin;
