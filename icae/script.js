@@ -160,62 +160,68 @@ function generarPDF() {
       });
 
       Promise.all(promesasCarga).then(() => {
-        const pages = pdfContent.querySelectorAll('.pdf-page');
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', [279.4, 215.9]);
-        const options = { scale: 2, useCORS: true };
+  const pages = pdfContent.querySelectorAll('.pdf-page');
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', [279.4, 215.9]);
+  const options = { scale: 2, useCORS: true };
 
-        const renderPage = (index) => {
-          if (index >= pages.length) {
-            const blob = pdf.output('blob');
+  const renderPage = (index) => {
+    if (index >= pages.length) {
+      const blob = pdf.output('blob');
 
-            const formData = new FormData();
-            const nombreArchivo = `evaluacion_${nombreLimpio}.pdf`;
-            formData.append("file", blob, nombreArchivo);
+      const formData = new FormData();
+      const nombreArchivo = `evaluacion_${nombreLimpio}.pdf`;
+      formData.append("file", blob, nombreArchivo);
 
-            fetch("https://store1.gofile.io/uploadFile", {
-              method: "POST",
-              body: formData
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.status === "ok") {
-                  const link = document.createElement('a');
-                  link.href = data.data.downloadPage;
-                  link.textContent = `📄 Descargar Evaluacion de ${nombre} `;
-                  link.className = "btn btn-outline-primary";
-                  document.getElementById('pdf-link-container').innerHTML = '';
-                  document.getElementById('pdf-link-container').appendChild(link);
-                  document.getElementById('pdf-loader').style.display = 'none';
-                } else {
-                  alert("Error al subir a GoFile.");
-                  console.error(data);
-                }
-                pdfContent.remove();
-              })
-              .catch(err => {
-                alert("No se pudo conectar a GoFile.io");
-                console.error(err);
-                pdfContent.remove();
-              });
-
-            return;
+      fetch("https://store1.gofile.io/uploadFile", {
+        method: "POST",
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === "ok") {
+            const link = document.createElement('a');
+            link.href = data.data.downloadPage;
+            link.textContent = `📄 Descargar Evaluacion de ${nombre} `;
+            link.className = "btn btn-outline-primary";
+            document.getElementById('pdf-link-container').innerHTML = '';
+            document.getElementById('pdf-link-container').appendChild(link);
+            document.getElementById('pdf-loader').style.display = 'none';
+          } else {
+            alert("Error al subir a GoFile.");
+            console.error(data);
           }
+          pdfContent.remove();
+        })
+        .catch(err => {
+          alert("No se pudo conectar a GoFile.io");
 
-          html2canvas(pages[index], options).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpeg', 1.0);
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+          // Fallback: abrir el PDF en una pestaña nueva
+          const fallbackUrl = URL.createObjectURL(blob);
+          window.open(fallbackUrl, '_blank');
 
-            if (index > 0) pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-            renderPage(index + 1);
-          });
-        };
+          console.error(err);
+          pdfContent.remove();
+        });
 
-        renderPage(0);
-      });
+      return;
+    }
+
+    html2canvas(pages[index], options).then(canvas => {
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      if (index > 0) pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      renderPage(index + 1);
+    });
+  };
+
+  renderPage(0);
+});
+
     })
     .catch(err => {
       console.error("Error al cargar template.html:", err);
