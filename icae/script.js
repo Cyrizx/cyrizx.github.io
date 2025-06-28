@@ -6,6 +6,25 @@ function limpiarNombre(nombre) {
     .toLowerCase();                     // Opcional: convertir todo a minúsculas
 }
 
+function convertirZuluAUtc7(horaZulu) {
+  let hora, minutos;
+  if (horaZulu.includes(':')) {
+    [hora, minutos] = horaZulu.split(':').map(Number);
+  } else {
+    hora = parseInt(horaZulu.substring(0, 2));
+    minutos = parseInt(horaZulu.substring(2, 4));
+  }
+
+  let fechaUTC = new Date();
+  fechaUTC.setUTCHours(hora, minutos, 0, 0);
+  fechaUTC.setUTCHours(fechaUTC.getUTCHours() - 7);
+
+  let horaLocal = fechaUTC.getHours().toString().padStart(2, '0');
+  let minutosLocal = fechaUTC.getMinutes().toString().padStart(2, '0');
+
+  return `${horaLocal}:${minutosLocal}`;
+}
+
 function generarPDF() {
   const nombre = document.getElementById('input-nombre').value.trim();
   const resultado = document.getElementById('input-resultado').value;
@@ -14,6 +33,10 @@ function generarPDF() {
   const horainicio = document.getElementById('input-horainicio').value;
   const horafin = document.getElementById('input-horafin').value;
   const grupo = document.getElementById('input-grupo').value;
+  
+
+  const horainicioLocal = convertirZuluAUtc7(horainicio);
+  const horafinLocal = convertirZuluAUtc7(horafin);
 
   // ✅ Verificar el estado del switch
   const switchSoloPrimera = document.getElementById("switchSoloPrimera");
@@ -61,8 +84,8 @@ function generarPDF() {
       pdfContent.querySelector('#fecha-pdf').textContent = fechaFormateada;
       pdfContent.querySelector('#fecha-tit').textContent = fechaFormateada;
 
-      pdfContent.querySelector('#horainicio-pdf').textContent = horainicio;
-      pdfContent.querySelector('#horafin-pdf').textContent = horafin;
+      pdfContent.querySelector('#horainicio-pdf').textContent = horainicioLocal;
+      pdfContent.querySelector('#horafin-pdf').textContent = horafinLocal;
       pdfContent.querySelector('#grupo-pdf').textContent = grupo;
 
       // ✅ CONFIGURAR EXAMINADOR E INSTRUCTOR SEGÚN EL ESTADO DEL SWITCH
