@@ -15,14 +15,14 @@ function convertirZuluAUtc7(horaZulu) {
     minutos = parseInt(horaZulu.substring(2, 4));
   }
 
-  let fechaUTC = new Date();
-  fechaUTC.setUTCHours(hora, minutos, 0, 0);
-  fechaUTC.setUTCHours(fechaUTC.getUTCHours() - 7);
+  // Crear la fecha como UTC pura
+  const utcDate = new Date(Date.UTC(2000, 0, 1, hora, minutos)); // año fijo
+  // Restar 7 horas
+  utcDate.setUTCHours(utcDate.getUTCHours() - 7);
 
-  let horaLocal = fechaUTC.getHours().toString().padStart(2, '0');
-  let minutosLocal = fechaUTC.getMinutes().toString().padStart(2, '0');
-
-  return `${horaLocal}:${minutosLocal}`;
+  const h = utcDate.getUTCHours().toString().padStart(2, '0');
+  const m = utcDate.getUTCMinutes().toString().padStart(2, '0');
+  return `${h}:${m}`;
 }
 
 function generarPDF() {
